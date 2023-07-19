@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+header {
+    height: 75vh;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.8)
+    ), url("https://assets.nflxext.com/ffe/siteui/vlv3/83e8c151-107d-4e8f-b95a-d2ba99d49bb9/7a0bd648-8238-4134-b486-e7ff5cbaa56e/US-en-20230213-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    border-bottom: 10px solid #222222;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.signIn {
+    text-decoration: none;
+    background: red;
+    color: #fff;
+    padding: 4px 15px 4px 15px;
+    border-radius: 5px;
+    transition: .5s;
+}
+.signIn:hover{
+    
+    background: rgb(128, 0, 0);
+}
+
+.under {
+    text-decoration: none;
+}
+
+.under:hover {
+    text-decoration: underline;
+}
+
+.row{
+    margin: 0;
+}
+
+.email {
+    width: 400px;
+    padding: 18px;
+    color: #fff;
+    border: 2px solid gray;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.get-start {
+    /* padding: 15px; */
+    
+    height: 64px;
+    background: #e50914;
+    font-size: 20px;
+    white-space: 10px;
+    font-weight: 600;
+    transition: .5s;
+}
+
+.get-start:hover{
+    background: rgb(128, 0, 0);
+    /* background: #F6121D; */
+}
+
+span {
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    h1{
+        font-size: 40px;
+    }
+
+    button {
+        margin-top: 10px;
+        
+    }
+    
+}
+
+.unselected {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+::placeholder {
+    color: #fff;
+}
+
+
+.b{
+    font-weight: 500;
+    font-size: 18px;
+}
