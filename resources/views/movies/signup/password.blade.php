@@ -30,7 +30,7 @@
             </div>
     </nav>
     {{-- section --}}
-    <div class="container d-flex d justify-content-center align-items-center ">
+    <div class="container d-flex justify-content-center align-items-center ">
         <div class="row">  
             <div class="container p-4">
                 

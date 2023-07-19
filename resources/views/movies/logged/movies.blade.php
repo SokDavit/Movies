@@ -18,6 +18,7 @@
         crossorigin="anonymous" />
     <!-- BOX ICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
@@ -50,6 +51,7 @@
 
         .dropdown-profile {
             list-style-type: none;
+            margin: 0;
         }
 
         .dropdown-profile li {
@@ -58,18 +60,15 @@
 
         .grid{
             display: grid;
-            grid-template-columns: repeat(7, minmax(50px, 1fr));
+            grid-template-columns: repeat(6, minmax(50px, 1fr));
         }
 
-        .grid div{
-            height: 230px;
-            display: flex;
-            padding: 1px;
-            background: red;
-            margin: 5px;
-            text-align: center;
-            align-content: center;
-            
+        .grid a{
+           margin: 0 10px 10px 0;
+        }
+
+        .nav-menu{
+            margin: 0;
         }
     </style>
 </head>
@@ -90,7 +89,7 @@
                 </ul>
 
 
-                <div class="d-flex text-center justify-content-center align-item-center" id="profile">
+                <div id="profile">
 
                     {{-- USER PROFILE --}}
                     <ul class="dropdown-profile">
@@ -128,21 +127,55 @@
             <div class="section-header">
                 All Movies
             </div>
-            <div class="grid">
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>  
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>               
+            <div class="grid ">
+                <a href="#" class="movie-item">
+                    <img src="{{ asset('img/movies/theatre-dead.jpg') }}" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Theatre of the dead
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>9.5</span>
+                            </div>
+                            <div class="movie-info">
+                                <i class="bx bxs-time"></i>
+                                <span>120 mins</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>HD</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>16+</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>  
+                <a href="#" class="movie-item">
+                    <img src="{{ asset('img/movies/theatre-dead.jpg') }}" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Theatre of the dead
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>9.5</span>
+                            </div>
+                            <div class="movie-info">
+                                <i class="bx bxs-time"></i>
+                                <span>120 mins</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>HD</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>16+</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>           
             </div>
         </div>
     </div>

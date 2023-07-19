@@ -52,6 +52,9 @@ Route::get('/movies-2', function() {
 Route::get('/tv-show', function() {
     return view('movies.logged.tv-show');
 });
+Route::get('/show', function() {
+    return view('movies.logged.show');
+});
 
 // ADMIN LOGIN
 Route::group(['middleware'=>['admin.checker']], function(){
