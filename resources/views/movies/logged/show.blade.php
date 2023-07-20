@@ -55,7 +55,6 @@
             position: absolute;
             width: 100%;
             min-height: 100vh;
-            position: absolute;
             display: flex;
             top: 0;
             left: 0;
@@ -66,6 +65,24 @@
             min-width: 100vh;
         }
 
+        .hero {
+            width: 100%;
+            min-width: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.8));
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero img {
+            width: 100%;
+            min-height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
         .video-back {
             position: absolute;
             right: 0;
@@ -73,9 +90,18 @@
             z-index: -1;
         }
 
-        .grid{
+        .grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(50px, 1fr));
+        }
+
+        .description {
+            width: 500px;
+        }
+        
+        .profile svg{
+            margin:0 10px; 
+            cursor: pointer;
         }
     </style>
 </head>
@@ -96,28 +122,24 @@
                 </ul>
 
 
-                <div class="d-flex text-center justify-content-center align-item-center" id="profile">
-
-                    {{-- USER PROFILE --}}
-                    <ul class="dropdown-profile">
-                        <li>
-                            {{-- SEARCH BAR --}}
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                    fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{{ asset('img/profile.png') }}"
-                                    style="width: 35px;height:35px;border-radius: 5px;margin-left: 10px;"
-                                    alt="">
-                            </a>
-                        </li>
-                    </ul>
+                <div class="profile">
+                    {{-- Search bar --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                    {{-- Bell ring --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-bell" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                    </svg>
+                    {{-- Profile --}}
+                    <a href="#">
+                        <img src="{{ asset('img/profile.png') }}"
+                            style="width: 35px;height:35px;border-radius: 5px;margin:10px;" alt="">
+                    </a>
                 </div>
 
 
@@ -130,23 +152,39 @@
     </div>
     {{-- END NAV --}}
     <div class="hero">
-        <video autoplay loop muted plays-inline class="video-back">
+        {{-- <video autoplay loop muted plays-inline class="video-back">
             <source
                 src="{{ asset('video/Jujutsu Kaisen Season 2 Official Trailer 2 (English Sub ) Extended Version.mp4') }}"
                 type="video/mp4">
-        </video>
-        <div class="d-flex ">
-            <div class="container">
-                <div class="row row-cols-2">
-                    <div class="col">
-                        <h1>Jujutsu Kaisen</h1>
+        </video> --}}
+        <img src="{{ asset('img/cartoons/Jujutsu-Kaisen-0-But-Why-Tho-1.jpg') }}" alt="" class="video-back">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="item-content">
+                        <div class="title">
+                            <h1>Jujutsu Kaisen</h1>
+                        </div>
+                        <div class="description">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Natus numquam praesentium atque voluptatibus libero in alias inventore facere vel!.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-danger p-3">Watch Now</button>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-outline-secondary p-3">Trailer</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                        
-                    </div>
+                </div>
+                <div class="col">
+                    Poster
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- SCRIPT -->

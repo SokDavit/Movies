@@ -19,26 +19,41 @@
     <!-- BOX ICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!--BOOSTRAP-->
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script> --}}
+    </script>
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
+        
         .dropdown-profile {
             list-style-type: none;
+            margin: 0;
         }
 
         .dropdown-profile li {
             display: inline-block;
         }
 
-        .videoplay{
-            margin-left: 25%;
+        .video-play{
+            display: flex;
+            /* justify-content: center; */
+            position: absolute;
+            width: 100%;
+            min-height: 100vh;
+            /* margin-top: 75px; */
+            left: 0;
+            bottom: 0;
         }
+
+        video{
+            width: 100%;
+            height: 780px;
+        }
+
     </style>
 </head>
 
@@ -51,10 +66,10 @@
                 <a href="/movies" class="logo">
                     MOVIES
                 </a>
-                <ul class="nav-menu " id="nav-menu">
+                <ul class="nav-menu " id="nav-menu" style="margin: 0;"> 
                     <li><a href="/movies">Home</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Series</a></li>
+                    <li><a href="/movies-2">Movies</a></li>
+                    <li><a href="/tv-show">TV-Show</a></li>
                 </ul>
 
 
@@ -92,10 +107,12 @@
     </div>
     <!-- END NAV -->
     <!-- MOVIE PLAY  -->
-    <div class="videoplay">
-        <video width="1280" height="720" controls>
-            <source src="">
-        </video>
+    <div class="video-play">
+        <div class="container">
+            <video controls>
+                <source src="">
+            </video>
+        </div>
         {{-- <h1>{{ $id }}</h1> --}}
     </div>
 </body>

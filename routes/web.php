@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MoviePlayController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,16 +47,14 @@ Route::group(['middleware'=>['login.checker']], function(){
 Route::get('/movies', function(){
     return view('movies.logged.index');
 });
-Route::get('/movies-2', function() {
-    return view('movies.logged.movies');
-});
-Route::get('/tv-show', function() {
-    return view('movies.logged.tv-show');
-});
+Route::get('/movies-2', [MoviePlayController::class, 'movies']);
+Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
 Route::get('/show', function() {
     return view('movies.logged.show');
 });
-
+Route::get('/play/{id}', function() {
+    return view('movies.logged.play');
+});
 // ADMIN LOGIN
 Route::group(['middleware'=>['admin.checker']], function(){
     Route::get('/admin/dashboard', function() {
