@@ -20,29 +20,19 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
         .pagination {
-            margin-top: 30px;
-            height: 60px;
-            widows: 400px;
-            border-radius: 40px;
-            /* box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2); */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
 
-        .pagination>a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1px 10px;
-            margin: 4px;
-            background: #252525;
-            border-radius: 5px;
         }
 
         .active:hover {
@@ -152,11 +142,10 @@
     <!-- END NAV -->
     {{-- pagination --}}
     <div class="pagination">
-        <a href="/#?=1" class="active">1</a>
-        <a href="#2" class="active">2</a>
-        <a href="#3" class="active">3</a>
-        <a href="#4" class="active">Last</a>
+        {{ $movies->links() }}
+
     </div>
+
     <!-- SCRIPT -->
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"

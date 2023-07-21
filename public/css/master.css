@@ -191,4 +191,26 @@ a:hover{
 .js{
   color: rgb(28, 98, 179);
 }
+.search_bar{
+  display: flex;
+  padding: 10px;
   
+  /* justify-content: space-between; */
+}
+.search_bar input{
+  width: 50%;
+  padding: 10px;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 5px;
+}
+.search_bar input:focus{
+  border: 1px solid ;
+}
+.search_bar select{
+  border: 1px solid rgb(190, 190, 190);
+  padding: 10px;
+  margin-left: 2rem;
+}
+.search_bar .filter{
+  width: 300px;
+}

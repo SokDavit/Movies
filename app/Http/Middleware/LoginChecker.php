@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginChecker
@@ -15,8 +16,8 @@ class LoginChecker
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!session('is_logged_in')){
-            return redirect('/');
+        if(!session('user_logged_in')){
+            return Redirect::route('movies.login-form');
         }
         return $next($request);
     }

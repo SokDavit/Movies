@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use Illuminate\Http\Request;
 
 class MoviePlayController extends Controller
 {
     //
-    // public function index()
-    // {
-    //     $movie = Movie::all();
-    //     return view('movies.logged.index', compact('movie'));
-    // }
+    public function index()
+    {
+        $movies = Movie::limit(10)->get();
+        return view('movies.logged.index', compact('movies'));
+    }
 
     public function movies()
     {
-        $movies = Movie::all();
+        $movies = Movie::paginate(1);
         return view('movies.logged.movies', compact('movies'));
         // return 'calling movies function';
     }
