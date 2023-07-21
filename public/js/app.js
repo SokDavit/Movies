@@ -12,7 +12,7 @@ $(document).ready(() => {
         items: 1,
         dots: false,
         loop: true,
-        nav:true,
+        nav: true,
         navText: navText,
         autoplay: true,
         autoplayHoverPause: true
@@ -40,7 +40,7 @@ $(document).ready(() => {
     $('.movies-slide').owlCarousel({
         items: 2,
         dots: false,
-        nav:true,
+        nav: true,
         navText: navText,
         margin: 15,
         responsive: {
@@ -56,3 +56,9 @@ $(document).ready(() => {
         }
     })
 })
+
+let subMenu = document.getElementById('subMenu');
+
+function toggleMenu() {
+    subMenu.classList.toggle('open-menu')
+}

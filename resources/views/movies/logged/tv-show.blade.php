@@ -18,53 +18,53 @@
         crossorigin="anonymous" />
     <!-- BOX ICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
         .pagination {
-            margin-top: 30px;
-            height: 60px;
-            widows: 400px;
-            border-radius: 40px;
-            /* box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2); */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translate(-50%);
+            --bs-pagination-active-bg: #F6121D;
+            --bs-pagination-disabled-bg: #252525;
+            --bs-pagination-disabled-color: #fff;
+            --bs-pagination-hover-bg: #F6121D;
+            --bs-pagination-hover-color: #fff;
+            --bs-pagination-focus-bg: #F6121D;
+            --bs-pagination-active-color: #fff;
         }
 
-        .pagination>a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1px 10px;
-            margin: 4px;
+        .pagination li {
+            margin: 5px;
+        }
+
+
+        .page-link {
             background: #252525;
-            border-radius: 5px;
+            color: #fff;
+            border: none;
         }
 
-        .active:hover {
-            /* background: red; */
-            color: white;
-        }
-
-        .grid{
+        .grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(50px, 1fr));
         }
 
-        .grid a{
-           margin: 0 10px 10px 0;
+        .grid a {
+            margin: 0 10px 10px 0;
         }
 
-        .nav-menu{
+        .nav-menu {
             margin: 0;
         }
 
-        .profile svg{
-            margin:0 10px; 
-            cursor: pointer;
+        .profile>i {
+            margin: 0 10px 0 5px;
         }
     </style>
 </head>
@@ -72,7 +72,7 @@
 <body>
 
     <!-- NAV -->
-    <div class="nav-wrapper">
+    <div class="nav-wrapper unselected">
         <div class="container">
             <div class="nav">
                 <a href="/movies" class="logo">
@@ -85,24 +85,36 @@
                 </ul>
 
 
-                <div class="profile">
+                <div class="profile unselected">
                     {{-- Search bar --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg>
+                    <i class="bi bi-search"></i>
                     {{-- Bell ring --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-bell" viewBox="0 0 16 16">
-                        <path
-                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                    </svg>
+                    <i class="bi bi-bell-fill"></i>
                     {{-- Profile --}}
                     <a href="#">
-                        <img src="{{ asset('img/profile.png') }}"
-                            style="width: 35px;height:35px;border-radius: 5px;margin:10px;" alt="">
+                        <img src="{{ asset('img/profile.png') }}" style="width: 35px;height:35px;border-radius: 5px;"
+                            alt="">
                     </a>
+                    <i class="bi bi-caret-down-fill" onclick="toggleMenu()"></i>
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="sub-menu">
+                            <div class="user-info">
+                                <a href="#">
+                                    <img src="{{ asset('img/profile.png') }}" alt="">
+                                </a>
+                                <a href="#">
+                                    <h2>Davit</h2>
+                                </a>
+                            </div>
+                            <ul>
+                                <li><a href="#">Manage Profile</a></li>
+                                <hr>
+                                <li><a href="#">Account</a></li>
+                                <li><a href="{{ route('user.logout') }}">Sign out of Movies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -145,17 +157,20 @@
                         </div>
                     </a>
                 @endforeach
-                          
+
             </div>
         </div>
     </div>
     <!-- END NAV -->
     {{-- pagination --}}
-    <div class="pagination">
+    {{-- <div class="pagination">
         <a href="/#?=1" class="active">1</a>
         <a href="#2" class="active">2</a>
         <a href="#3" class="active">3</a>
         <a href="#4" class="active">Last</a>
+    </div> --}}
+    <div class="unselected">
+        {{ $movies->links('vendor.pagination.bootstrap-5') }}
     </div>
     <!-- SCRIPT -->
     <!-- JQUERY -->

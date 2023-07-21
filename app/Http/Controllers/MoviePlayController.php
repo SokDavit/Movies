@@ -22,7 +22,7 @@ class MoviePlayController extends Controller
 
     public function tv_show()
     {
-        $movies = Movie::all();
+        $movies = Movie::paginate(1);
         return view('movies.logged.tv-show', compact('movies'));
         // return 'calling movies function';
     }

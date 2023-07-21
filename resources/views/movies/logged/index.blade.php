@@ -24,28 +24,7 @@
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <style>
-        .pagination {
-            margin-top: 30px;
-            height: 60px;
-            widows: 400px;
-            border-radius: 40px;
-            /* box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2); */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pagination>a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1px 10px;
-            margin: 4px;
-            background: #252525;
-            border-radius: 5px;
-        }
 
         .active:hover {
             /* background: red; */
@@ -60,55 +39,7 @@
             margin: 0 10px 0 5px;
         }
 
-        .sub-menu-wrap {
-            position: absolute;
-            right: 30px;
-            top: 70px;
-            width: 150px;
-            max-height: 0px;
-            overflow: hidden;
-
-        }
-
-        .sub-menu-wrap.open-menu {
-            max-height: 170px;
-        }
-
-        .sub-menu {
-            background: black;
-            padding: 10px;
-            color: #fff;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-info h2 {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .user-info img {
-            width: 32px;
-            border-radius: 5px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-
-        }
-
-        .sub-menu ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            font-size: 0;
-        }
-
-        .sub-menu ul li {
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
+        
     </style>
 </head>
 
@@ -470,13 +401,6 @@
         crossorigin="anonymous"></script>
     <!-- APP SCRIPT -->
     <script defer src="{{ asset('js/app.js') }}"></script>
-    <script>
-        let subMenu = document.getElementById('subMenu');
-
-        function toggleMenu() {
-            subMenu.classList.toggle('open-menu')
-        }
-    </script>
 
 </body>
 
