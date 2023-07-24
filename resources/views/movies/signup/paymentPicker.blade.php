@@ -11,29 +11,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <style>
-        .row .input-box{
-            text-decoration: none;
-            display: flex;
-            margin: auto;
+        section {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            place-items: center;
+            text-align: center
+        }
+
+        .payment {
             width: 500px;
-            height: 52px;
+            height: 64px;
+            background: #fff;
             border: 2px solid silver;
             border-radius: 5px;
-            background: white;
+            display: flex;
             justify-content: space-between;
-            cursor: pointer;
-            transition: 0.2s;
+            align-items: center;
+            padding: 10px;
         }
-        .row .input-box:hover {
-            border: 2px solid skyblue;
+
+        .payment .sub {
+            display: flex;
+            align-items: center;
+
         }
-        .input-box div{
-            text-decoration: none;
-            line-height: 48px;
-            color: black;
-            
+
+        .payment .sub .text {
+            margin-right: 10px;
+        }
+
+        .payment .right i {
+            font-size: 20px;
         }
 
         .unselected {
@@ -57,29 +71,41 @@
                 <h1 style="color: red;font-size: 3rem; font-weight: 900;">MOVIES</h1>
             </a>
             <div class="justify-content-end">
-                <a href="/signin" class="under "
+                <a href="{{ route('user.logout') }}" class="under "
                     style="color:rgb(34, 34, 34);font-size: 20px;padding-right: 25px;font-weight: 600;">Sign Out</a>
             </div>
     </nav>
-    <div class="text-center mb-5">
-        <div class="row">
-            <h1>Choose how to pay</h1>
-            <p>Your payment is encrypted and you can change how you pay anytime.</p>
+
+    <section>
+        <h1>Choose how to pay</h1>
+        <h5>Your payment is encrypted and you can change how <br>you pay anytime.</h5>
+        <h5 class="mb-5">
             <b>
                 Secure for peace of mind.<br>
-                Cancel easily online.
+            Cancel easily online.
             </b>
-            <a href="creditoption" class="input-box unselected mt-5">
-                <div >Credit or Debit Card
-                    <img src="{{ asset('img/213724_card_cash_checkout_online shopping_payment method_icon (1).png') }}" alt="visa">
-                    <img src="{{ asset('img/2766977.png') }}" alt="mastercard" width="32px">
-                    
+        </h5>
+        <button type="button" class="payment" onclick="window.location='{{ route('creditoption') }}'">
+            <div class="sub">
+                <div class="text">
+                    <span>
+                        Credit or Debit Card
+                    </span>
                 </div>
-                <div >></div>
-            </a>
-        </div>
+                <div class="tag">
+                    <img src="{{ asset('img/213724_card_cash_checkout_online shopping_payment method_icon (1).png') }}"
+                        alt="visa">
+                    <img src="{{ asset('img/2766977.png') }}" alt="mastercard" width="32px">
+                </div>
 
-    </div>
+            </div>
+            <div class="right">
+                <div>
+                    <i class="bi bi-chevron-right"></i>
+                </div>
+            </div>
+        </button>
+    </section>
 
 </body>
 

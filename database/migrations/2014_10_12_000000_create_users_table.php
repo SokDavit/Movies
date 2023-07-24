@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('mobilePhone');
-            $table->string('subscription');
+            $table->string('mobilePhone')->nullable();
+            $table->string('subscription')->default('none');
             $table->string('active');
             $table->rememberToken();
             $table->timestamps();

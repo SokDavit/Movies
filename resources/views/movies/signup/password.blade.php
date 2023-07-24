@@ -25,43 +25,45 @@
                 <h1 style="color: red;font-size: 3rem; font-weight: 900;">MOVIES</h1>
             </a>
             <div class="justify-content-end">
-                <a href="/signin" class="under "
+                <a href="{{ route('signin') }}" class="under "
                     style="color:rgb(34, 34, 34);font-size: 20px;padding-right: 25px;font-weight: 600;">Sign In</a>
             </div>
     </nav>
     {{-- section --}}
     <div class="container d-flex justify-content-center align-items-center ">
-        <div class="row">  
+        <div class="row">
             <div class="container p-4">
-                
+
                 {{-- form --}}
-                <form action="{{ route('reg.exists') }}" method="post">
+                <form action="{{ route('reg-exist') }}" method="post">
                     @csrf
                     {{-- INCORRECT PASSWORD --}}
                     @if (session('erInco'))
                         <div class="{{ session('erInco') }} border-0 text-white"
                             style="background:#E87C03;font-wight:500;">Incorrect password. Please try again or you
                             can
-                            <a href="/signup/forgotpassword" style="text-decoration: underline; color:white;font-wight:500;">
+                            <a href="/signup/forgotpassword"
+                                style="text-decoration: underline; color:white;font-wight:500;">
                                 <b>reset your password</b>
                             </a>.
                         </div>
                     @endif
                     <h2 style="font-weight: 500; font-size: 35px; font-weight: 600;">Welcome back!<br>
                         Joining MOVIE is easy.</h2>
-                    <p style="font-size:20px; font-weight:300;">Enter your password and you'll be watching in no time.</p>
+                    <p style="font-size:20px; font-weight:300;">Enter your password and you'll be watching in no time.
+                    </p>
                     <label for="email" class="b">Email</label><br>
 
                     <h6>
                         <b>
-                            {{-- @if ( $userInput )
-                                {{ $userInput }}
-                            @endif --}}
+                            @if (session('user_temp_in'))
+                                {{ session('user_temp_in') }}
+                            @endif
                         </b>
                     </h6>
 
                     <input type="password" name="password" placeholder="Enter your password"
-                        class="form-control p-3 mt-2 mb-3" >
+                        class="form-control p-3 mt-2 mb-3">
                     <a href="/signup/forgotpassword" class="under b">Forgot your
                         password?</a><br><br>
 

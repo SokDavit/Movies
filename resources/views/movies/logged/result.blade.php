@@ -20,18 +20,11 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
-        input[type="search"]::-webkit-input-placeholder {
-            color: white;
-        }
-
         .grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(50px, 1fr));
@@ -45,48 +38,6 @@
             margin: 0;
         }
 
-        .hero {
-            position: absolute;
-            width: 100%;
-            min-height: 100vh;
-            top: 0; left: 0;
-            display: flex;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-                                            rgba(0, 0, 0, 0.8));
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero video {
-            width: 100%;
-            min-width: 100vh;
-        }
-
-        .hero img {
-            width: 100%;
-            min-height: 100vh;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .video-back {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(50px, 1fr));
-        }
-
-        .description {
-            width: 500px;
-        }
-
         .profile>i {
             margin: 0 10px 0 5px;
         }
@@ -96,7 +47,7 @@
 <body>
 
     <!-- NAV -->
-    <div class="nav-wrapper" style="background: transparent;">
+    <div class="nav-wrapper">
         <div class="container">
             <div class="nav">
                 <a href="/movies" class="logo">
@@ -111,11 +62,26 @@
 
                 <div class="profile unselected">
                     {{-- Search bar --}}
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                    <div class="modal fade" id="exampleModal" tabindex="2" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+
+                                <div class="modal-body">
+                                    <form action="{{ route('search') }}" method="post">
+                                        @csrf
+                                        <input type="search" name="search" id="search" placeholder="Search..."
+                                            class="form-control bg-dark text-white">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- Bell ring --}}
                     <i class="bi bi-bell-fill"></i>
                     {{-- Profile --}}
-                    <a href="">
+                    <a href="#">
                         <img src="{{ asset('img/profile.png') }}" style="width: 35px;height:35px;border-radius: 5px;"
                             alt="">
                     </a>
@@ -149,41 +115,47 @@
             </div>
         </div>
     </div>
-    {{-- END NAV --}}
-    <div class="hero">
-        {{-- <video autoplay loop muted plays-inline class="video-back">
-            <source
-                src="{{ asset('video/Jujutsu Kaisen Season 2 Official Trailer 2 (English Sub ) Extended Version.mp4') }}"
-                type="video/mp4">
-        </video> --}}
-        <img src="{{ asset('img/cartoons/Jujutsu-Kaisen-0-But-Why-Tho-1.jpg') }}" alt="" class="video-back">
+    <div class="section">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="item-content">
-                        <div class="title">
-                            <h1>Jujutsu Kaisen</h1>
-                        </div>
-                        <div class="description">
-                            <p>{{ $movies->description }}</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <a href="{{ route('play', $movies->id) }}" class="btn btn-danger p-3">Watch Now</a>
+            <div class="section-header">
+                {{-- Search result for "{{ $result->title }}" --}}
+            </div>
+            <div class="grid ">
+                @if ($movies)
+                    @foreach ($movies as $movie)
+                        <a href="{{ route('show', $movie->id) }}" class="movie-item">
+                            <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{ $movie->title }}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="bx bxs-star"></i>
+                                        <span>9.5</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="bx bxs-time"></i>
+                                        <span>{{ $movie->duration }} mins</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>HD</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>16+</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <button class="btn btn-outline-secondary p-3">Trailer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-
-                </div>
+                        </a>
+                    @endforeach
+                @endif
+                @error('errno')
+                    <p>{{ session('errno') }}</p>
+                @enderror
             </div>
         </div>
-
     </div>
+    <!-- END NAV -->
 
     <!-- SCRIPT -->
     <!-- JQUERY -->

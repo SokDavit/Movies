@@ -16,7 +16,9 @@ class LoginChecker
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!session('user_logged_in')){
+        
+
+        if(!session('user_logged_in') ){
             return Redirect::route('movies.login-form');
         }
         return $next($request);

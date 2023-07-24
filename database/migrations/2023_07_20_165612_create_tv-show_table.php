@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('title',100);
             $table->integer('seasonNumber');
             $table->string('year',4);
-            $table->string('poster',255);
+            $table->string('age');
+            $table->string('quality')->default('HD');
             $table->text('description');
+            $table->string('rating')->default('0');
+            $table->string('poster',255);
             $table->timestamps();
         });
     }

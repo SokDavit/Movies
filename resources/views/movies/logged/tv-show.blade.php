@@ -132,7 +132,7 @@
             </div>
             <div class="grid ">
                 @foreach ($movies as $movie)
-                    <a href="show" class="movie-item">
+                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
                         <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">

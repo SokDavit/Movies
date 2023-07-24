@@ -20,12 +20,14 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
-
         .active:hover {
             /* background: red; */
             color: white;
@@ -38,8 +40,13 @@
         .profile>i {
             margin: 0 10px 0 5px;
         }
+        .modal-backdrop {
+            --bs-backdrop-zindex: 1;
 
-        
+        }
+        input[type="search"]::-webkit-input-placeholder {
+            color: white;
+        }
     </style>
 </head>
 
@@ -59,9 +66,28 @@
 
                 <div class="profile unselected">
                     {{-- Search bar --}}
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                    <div class="modal fade" id="exampleModal" tabindex="2" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+                                
+                                <div class="modal-body">
+                                    <form action="{{ route('search') }}" method="post">
+                                        @csrf
+                                        <input type="search" name="search" id="search" placeholder="Search..." class="form-control bg-dark text-white">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- Bell ring --}}
-                    <i class="bi bi-bell-fill"></i>
+                    <i class="bi bi-bell-fill position-relative ">
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </i>
                     {{-- Profile --}}
                     <a href="#">
                         <img src="{{ asset('img/profile.png') }}" style="width: 35px;height:35px;border-radius: 5px;"
@@ -275,30 +301,30 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('img/movies/theatre-dead.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Theatre of the dead
+                    <a href="#" class="movie-item">
+                        <img src="{{ asset('img/movies/theatre-dead.jpg') }}" alt="">
+                        <div class="movie-item-content">
+                            <div class="movie-item-title">
+                                Theatre of the dead
+                            </div>
+                            <div class="movie-infos">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div class="movie-info">
+                                    <i class="bx bxs-time"></i>
+                                    <span>120 mins</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>HD</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>16+</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
                 @endforeach
                 <!-- END MOVIE ITEM -->
             </div>
@@ -315,30 +341,30 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('img/series/supergirl.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Supergirl
+                    <a href="#" class="movie-item">
+                        <img src="{{ asset('img/series/supergirl.jpg') }}" alt="">
+                        <div class="movie-item-content">
+                            <div class="movie-item-title">
+                                Supergirl
+                            </div>
+                            <div class="movie-infos">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div class="movie-info">
+                                    <i class="bx bxs-time"></i>
+                                    <span>120 mins</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>HD</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>16+</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
                 @endforeach
                 <!-- END MOVIE ITEM -->
             </div>
@@ -355,7 +381,7 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
-                    <a href="show" class="movie-item">
+                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
                         <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">

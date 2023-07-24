@@ -11,23 +11,104 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <style>
-        .input-box {
-            margin: auto;
-            width: 25%;
+        section {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 440px;
+
+        }
+        .section-header>p{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 0;
+            font-size: 13px;
+            margin: 20px 0 0 0;
+        }
+        .section-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .input-field .col{
-            padding: 0;
+        .section-header .img {
+            display: flex;
+            
         }
 
-        .input-field form .row div {
-            padding: 0 ;
+        .section-header .img img {
+            margin-right:5px;
+            max-width: auto;
+            height: auto;
         }
 
-        .col{
-            margin: 10px 5px 10px 5px;
+        .editplan {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            background: #F4F4F4;
+            padding: 10px;
+            align-items: center;
+            border: none;
+            border-radius: 5px;
+        }
+        .editplan div .price{
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        .editplan div .type{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #8c8c8c;
+        }
+        .editplan>div:nth-child(2) a{
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+
+
+        .section-footer p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: #8c8c8c;
+            margin: 20px 0 0 0;
+
+        }
+        .section-footer .form-check label{
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        .section-footer button {
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            padding: 10px;
+            background: red;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 25px;
+            font-weight: bold;
+            align-items: center;
+        }
+
+        form>input {
+            margin: 10px 0;
+        }
+        .section-body form input{
+            padding: 12px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+
         }
     </style>
     <title>
@@ -43,55 +124,67 @@
                 <h1 style="color: red;font-size: 3rem; font-weight: 900;">MOVIES</h1>
             </a>
             <div class="justify-content-end">
-                <a href="/signin" class="under "
+                <a href="{{ route('user.logout') }}" class="under "
                     style="color:rgb(34, 34, 34);font-size: 20px;padding-right: 25px;font-weight: 600;">Sign Out</a>
             </div>
     </nav>
 
-    <div class="input-box">
-        <div class="container">
-            <div class="row">
-                <h2>Set Up your credit or debit card</h2>
-                <div class="img">
-                    <img src="{{ asset('img/213724_card_cash_checkout_online shopping_payment method_icon (1).png') }}"
-                        width="32px" alt="visa">
-                    <img src="{{ asset('img/2766977.png') }}" alt="mastercard" width="32px">
 
+    <section>
+        <div class="section-header">
+            <p>STEP 3 OF 3</p>
+            <h1>
+                Set Up your credit or debit card
+            </h1>
+            <div class="img">
+                <img src="{{ asset('img/213724_card_cash_checkout_online shopping_payment method_icon (1).png') }}"
+                    width="32px" alt="visa">
+                <img src="{{ asset('img/2766977.png') }}" alt="mastercard" width="32px">
+            </div>
+        </div>
+        <div class="section-body">
+            <form action="" method="post">
+                @csrf
+                <input type="tel" name="cardnumber" id="cardnumber" placeholder="Card Number" class="form-control">
+                <div class="input-group">
+                    <input type="date" name="expiration" id="expiration" class="form-control">
+                    <input type="text" name="cvv" id="cvv" class="form-control">
                 </div>
-                <div class="input-field">
-                    <form action="" method="POST">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" placeholder="NUMBER CARD" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" placeholder="NUMBER CARD" class="form-control">
-                            </div>
-                            <div class="col">
-                                <input type="text" placeholder="NUMBER CARD" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" placeholder="NUMBER CARD" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div>
-                                <button type="submit" class="btn btn-danger form-control" >NEXT</button>
-                            </div>
-                            <div>
-                                <label for="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci fuga numquam, dolore eum ex dignissimos amet autem rerum impedit rem, beatae quia sequi eaque fugit modi nesciunt vitae laboriosam! Rerum.</label>
-                            </div>
-                        </div>
-                    </form>
+                <input type="text" name="firstname" placeholder="First Name" class="form-control">
+                <input type="text" name="lastname" placeholder="Last Name" class="form-control">
+            </form>
+            <div class="editplan">
+                <div>
+                    <div class="price"> {{-- PLAN PRICE --}}
+                        USD2.99/month
+                    </div>
+                    <div class="type"> {{-- TYPE DEVICE --}}
+                        Mobile
+                    </div>
+                </div>
+                <div>
+                    <a href="#" class="under">Change</a>
                 </div>
             </div>
-
         </div>
-    </div>
+        <div class="section-footer">
+            <p>By checking the checkbox below, you agree to our Terms of Use, Privacy Statement, and that you are over
+                18. Netflix will automatically continue your membership and charge the membership fee (currently
+                USD2.99/month) to your payment method until you cancel. You may cancel at any time to avoid future
+                charges.
+            </p>
+            <div class="form-check unselected">
+                <input class="form-check-input" type="checkbox" id="agree">
+                <label class="form-check-label" for="agree">
+                    I agree.
+                </label>
+            </div>
+            <button type="button" value="submitButton">Start Membership</button>
+            <p>
+                This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.
+            </p>
+        </div>
+    </section>
 </body>
 
 </html>

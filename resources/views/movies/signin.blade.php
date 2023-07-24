@@ -73,19 +73,23 @@
         input[type="password"]::-webkit-input-placeholder {
             color: white;
         }
-        .input-box{
+
+        .input-box {
             display: flex;
             align-items: center;
+
         }
-        .input-box input{
+
+        .input-box input {
             border-radius: 5px 0 0 5px;
         }
-        .input-box button{
+
+        .input-box button {
             color: gray;
             background: #333333;
             padding: 14px;
             border: none;
-            border-radius: 0 5px 5px 0  ;
+            border-radius: 0 5px 5px 0;
         }
     </style>
     <title>Movies</title>
@@ -113,35 +117,34 @@
 
                         <h1 class="p-3 pt-5" style="font-weight: 700">Sign In</h1>
                         {{-- HAVEN'T AN ACCOUNT --}}
-                        @if (session('erAcc'))
-                            <div class="{{ session('Msg') }} border-0 text-white rounded-2 p-2"
-                                style="background: #E87C03;font-wight:500;">Sorry, we can't find an account with this
-                                email address.
-                                Please try again or
+                        @if (session('errAcc'))
+                            <div
+                                class="alert alert-danger border-0 text-white rounded-2 p-2"style="background: #E87C03;font-wight:500;">
+                                {{ session('errAcc') }}
                                 <a href="/" style="text-decoration: underline; color:white;font-wight:500;">
                                     <b>create a new account</b>
                                 </a>.
                             </div>
                         @endif
                         {{-- INCORRECT PASSWORD --}}
-                        @if (session('erInco'))
-                            <div class="{{ session('incorrect') }} border-0 text-white rounded-2 p-2"
-                                style="background:#E87C03;font-wight:500;">Incorrect password. Please try again or you
-                                can
+                        @if (session('errIn'))
+                            <div class="alert alert-danger border-0 text-white rounded-2 p-2"
+                                style="background:#E87C03;font-wight:500;">{{ session('errIn') }}
                                 <a href="/" style="text-decoration: underline; color:white;font-wight:500;">
                                     <b>reset your password</b>
                                 </a>.
                             </div>
                         @endif
 
-                        <input type="email" name="email" id="email" value="{{ old('email') }}"
+                        <input type="email" name="email" id="email" value="{{ session('user_temp_in') }}"
                             placeholder="Email" class="form-control field">
                         @error('email')
                             <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
                         @enderror
                         <div class="input-box">
-                            <input type="password" name="password" id="password" placeholder="Password" class="form-control field">
-                            <button type="button"  id="showicon" onclick="showpassword()">SHOW</button>
+                            <input type="password" name="password" id="password" placeholder="Password"
+                                class="form-control field">
+                            <button type="button" id="showicon" onclick="showpassword()">SHOW</button>
                         </div>
                         @error('password')
                             <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
@@ -183,21 +186,20 @@
         </div>
     </footer>
 
-<script>
-    let password = document.getElementById('password');
-    let showicon = document.getElementById('showicon');
-    function showpassword(){
-        if(password.type == "password"){
-            password.type = "text";
-            showicon.textContent = "HIDE";
-        } else {
-            password.type = "password";
-            showicon.textContent = "SHOW";
+    <script>
+        let password = document.getElementById('password');
+        let showicon = document.getElementById('showicon');
+
+        function showpassword() {
+            if (password.type == "password") {
+                password.type = "text";
+                showicon.textContent = "HIDE";
+            } else {
+                password.type = "password";
+                showicon.textContent = "SHOW";
+            }
         }
-    }
-
-
-</script>
+    </script>
 
 </body>
 

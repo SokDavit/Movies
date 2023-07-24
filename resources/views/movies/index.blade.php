@@ -19,25 +19,41 @@
         <nav class="navbar navbar-expand-md ">
             <div class="container">
                 <span style="color: red;font-size: 3rem;font-weight: 900;" class="unselected">MOVIES</span>
-
-                <div class="justify-content-end">
-                    <a href="/signin" class="signIn">Sign In</a>
-                </div>
+                @if (session('user_id'))
+                    <div class="justify-content-end">
+                        <a href="{{ route('user.logout') }}" class="signIn">Sign Out</a>
+                    </div>
+                @else
+                    <div class="justify-content-end">
+                        <a href="{{ route('signin') }}" class="signIn">Sign In</a>
+                    </div>
+                @endif
             </div>
         </nav>
 
         <!-- SignUp -->
         <div class="container text-center " style="margin-top: 150px">
             <div class="row ">
-                <h1>Unlimited movies, TV shows, and more</h1>
-                <h4>Plans now start at USD2.99/month.</h4>
-                <p>Ready to watch? Enter your email to create or restart your membership.</p>   
+                @if (session('user_id'))
+                    <h4>Welcome back</h4>
+                    <h1><b>Unlimited movies, TV shows, and more</b></h1>
+                    <h4>Watch anywhere. Cancel anytime.</h4>
+                @else
+                    <h1>Unlimited movies, TV shows, and more</h1>
+                    <h4>Plans now start at USD2.99/month.</h4>
+                    <p>Ready to watch? Enter your email to create or restart your membership.</p>
+                @endif
                 <form action="{{ route('signup') }}" method="post">
-                    
-                    @csrf
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email" class="email" required>
 
-                    <button type="submit" class="btn btn-danger get-start">Get Started ></button>
+                    @csrf
+                    @if (session('user_id'))
+                        <button type="button" class="btn btn-danger get-start mt-2"  onclick="window.location='{{ route('chooseplan') }}'">Finish Sign Up ></button>
+                    @else
+                        <input type="email" name="email" id="email" value="{{ session('user_temp_in') }}"
+                            placeholder="Email" class="email" required>
+
+                        <button type="submit" class="btn btn-danger get-start">Get Started ></button>
+                    @endif
                 </form>
             </div>
         </div>
