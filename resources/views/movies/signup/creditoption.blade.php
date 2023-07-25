@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <style>
         section {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
+            margin: auto;
+            /* top: 50%;
+            transform: translate(-50%, -50%); */
             width: 440px;
 
         }
@@ -38,13 +38,16 @@
 
         .section-header .img {
             display: flex;
-            
+
         }
 
         .section-header .img img {
             margin-right:5px;
             max-width: auto;
             height: auto;
+        }
+        .section-body form input{
+            font-family: 'Poppins', sans-serif;
         }
 
         .editplan {
@@ -163,7 +166,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="#" class="under">Change</a>
+                    <a href="/signup/platform" class="under">Change</a>
                 </div>
             </div>
         </div>

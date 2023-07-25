@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/master.css') }}" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- Font Awesome Cdn Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
@@ -34,7 +34,10 @@
                     </a>
                 </li>
 
-
+                <li>
+                    <i class="bi bi-toggle-off"></i>
+                    <i class="bi bi-toggle-on"></i>
+                </li>
                 <!-- LOGOUT -->
                 <li>
                     <a href="{{ route('admin.logout') }}" class="logout">

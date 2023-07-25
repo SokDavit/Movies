@@ -13,6 +13,10 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <style>
         section {
             position: absolute;
@@ -22,6 +26,21 @@
             display: grid;
             place-items: center;
             text-align: center
+        }
+        section h1,h5,b,span{
+            font-family: 'Poppins', sans-serif;
+        }
+        section>i {
+            position: absolute;
+            top: 0;
+            transform: translate(0, -150%);
+            font-size: 2rem;
+            color: red;
+            width: 50px;
+            height: 50px;
+            border: 1px solid red;
+            border-radius: 50%;
+
         }
 
         .payment {
@@ -77,12 +96,13 @@
     </nav>
 
     <section>
+        <i class="bi bi-lock-fill"></i>
         <h1>Choose how to pay</h1>
         <h5>Your payment is encrypted and you can change how <br>you pay anytime.</h5>
         <h5 class="mb-5">
             <b>
                 Secure for peace of mind.<br>
-            Cancel easily online.
+                Cancel easily online.
             </b>
         </h5>
         <button type="button" class="payment" onclick="window.location='{{ route('creditoption') }}'">

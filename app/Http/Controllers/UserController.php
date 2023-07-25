@@ -13,7 +13,7 @@ class UserController extends Controller
     public function loginForm(Request $request)
     {
         // CHECK SUB
-        $data = User::where('id', session('user_id'))->first();  
+        $data = User::where('id', session('user_id'))->first();
         if (session('user_logged_in') && $data->subscription != 'none') {
             return Redirect::route('movies');
         }
@@ -64,6 +64,9 @@ class UserController extends Controller
     {
         $data = User::where('email', session('user_temp_in'));
         if ($data->count() > 0) {
+            if(session('user_logged_in') && session('user_password_in')){
+                return Redirect::route('movies.login-form');
+            }
             return view('movies.signup.password');
         }
         return Redirect::route('movies.login-form');
@@ -88,7 +91,7 @@ class UserController extends Controller
             session(['user_temp_in' => $email]);
             return redirect()->back()->with('errex', 'Looks like that account already exists.<br> Sign into that account or try using a different email.');
         } else {
-            
+
             $user = User::create([
                 'email' => $email,
                 'password' => $hashed_password,
@@ -96,7 +99,7 @@ class UserController extends Controller
             ]);
 
             $id = $user->id;
-            session(['user_logged_in' => $email, 'user_id' => $id]);
+            session(['user_logged_in' => $email, 'user_id' => $id, 'user_password_in'=>$hashed_password]);
             $request->session()->pull('user_temp_in');
             return Redirect::route('chooseplan');
         }
@@ -135,7 +138,7 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('erInco', 'alert alert-warning');
         }
-    }   
+    }
 
     // Logout Session
     public function logout(Request $request)

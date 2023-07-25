@@ -8,13 +8,12 @@
     </div>
     <div class="main-skills">
         <div class="card">
-            <i class="fas fa-laptop-code"></i>
+
             <h3>Film</h3>
             <p>1000 film</p>
             <button>Get Started</button>
         </div>
         <div class="card">
-            <i class="fab fa-wordpress"></i>
             <h3>TV-Show</h3>
             <button>Get Started</button>
         </div>
@@ -31,7 +30,7 @@
                         <option>Film</option>
                         <option>TV-Show</option>
                     </select>
-                    <select class="filter">                                                                               
+                    <select class="filter">
                         <option>Filter</option>
                     </select>
                     <button type="button" class="">
