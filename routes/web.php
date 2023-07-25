@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\MoviePlayController;
 use App\Http\Controllers\UserController;
@@ -20,17 +21,34 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/login-form', [LoginAdminController::class, 'loginForm'])->name('admin.login-form');
 Route::post('/admin/login', [LoginAdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
+// MOVIES DASH
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/movie', [AdminController::class, 'movie'])->name('admin.movie.index');
+Route::get('/admin/movie/film', [AdminController::class, 'film'])->name('admin.movie.film');
+Route::get('/admin/movie/film/add', [AdminController::class, 'film_add'])->name('admin.movie.film.add');
+
+Route::get('/admin/movie/film/{id}', [AdminController::class, 'film_view'])->name('admin.movie.film.view');
+Route::get('/admin/movie/tv-show', [AdminController::class, 'tv_show'])->name('admin.movie.tv-show');
+Route::get('/admin/movie/tv-show/{id}', [AdminController::class, 'tv_show_view'])->name('admin.movie.tv-show.view');
+
 // MIDDLEWARE ADMIN
 Route::group(['middleware' => ['admin.checker']], function () {
-    Route::get('/admin', function () {
-        return Redirect()->route('admin');
-    });
-    Route::get('/admin/dashboard', function () {
+    Route::get('/admin/dashboard', function(){
         return view('admin.index');
-    })->name('admin');
-    Route::get('/admin/movies', function () {
+    }); 
+    Route::get('/admin/movie/index', function () {
         return view('admin.movies.index');
-    })->name('admin.movies');
+    })->name('admin.movie');
+    Route::get('/admin/movie/film/index', function(){
+        return view('admin.movies.film.index');
+    });
+    Route::get('/admin/movie/tv-show/index', function(){
+        return view('admin.movies.tv-show.index');
+    });
+    Route::get('/movie/film/add', function(){
+        return view('admin.movies.film.add');
+    });
 });
 
 //--------------------------------------------------------------------LOGIN MOVIES------------------------------------------------------------------------------------
@@ -71,17 +89,17 @@ Route::get('/signup/creditoption', function () {
 Route::get('/paymentSuccessfuly', function () {
     return view('movies.signup.paymentSuccesfuly');
 });
-
+Route::get('/show/{id}',[MoviePlayController::class, 'movie_show'])->name('show');
+Route::get('/movies', [MoviePlayController::class, 'index'])->name('movies');
+Route::get('/movies-2', [MoviePlayController::class, 'movies']);
+Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
+Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
+Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
+Route::get('/result', [MoviePlayController::class, 'result'])->name('result');
 // MIDDLEWARE MOVIES 
 Route::group(['middleware' => ['login.checker']], function () {
     
     
-    Route::get('/movies', [MoviePlayController::class, 'index'])->name('movies');
-    Route::get('/movies-2', [MoviePlayController::class, 'movies']);
-    Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
-    Route::get('/show/{id}',[MoviePlayController::class, 'movie_show'])->name('show');
-    Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
-    Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
-    Route::get('/result', [MoviePlayController::class, 'result'])->name('result');
+   
 });
 

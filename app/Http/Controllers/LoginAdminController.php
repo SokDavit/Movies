@@ -27,8 +27,7 @@ class LoginAdminController extends Controller
         // $admin = Admin::all();
         if($admin && $admin->username == $username && $admin->password == $password){
             session(['admin_logged_in'=>true, 'admin_id'=>123]);
-            return Redirect::route('admin');
-            // return 'logged';
+            return Redirect::route('admin.dashboard');
         }
         return Redirect::route('admin.login-form');
 

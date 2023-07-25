@@ -51,7 +51,7 @@ class MoviePlayController extends Controller
         return view('movies.logged.play', compact('movies', 'related'));
         // return $related;
     }
-
+    // MOVIES SEARCH
     public function movie_search(Request $request)
     {
         $search = $request->search;
@@ -64,5 +64,10 @@ class MoviePlayController extends Controller
         }
         // return Redirect::route('result')->with('errno', 'result no found.');
         
+    }
+
+    // MOVIES LIVE SEARCH
+    public function livesearch(){
+        return '';
     }
 }

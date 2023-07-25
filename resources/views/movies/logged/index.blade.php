@@ -40,10 +40,12 @@
         .profile>i {
             margin: 0 10px 0 5px;
         }
+
         .modal-backdrop {
             --bs-backdrop-zindex: 1;
 
         }
+
         input[type="search"]::-webkit-input-placeholder {
             color: white;
         }
@@ -71,11 +73,12 @@
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content bg-dark">
-                                
+
                                 <div class="modal-body">
                                     <form action="{{ route('search') }}" method="post">
                                         @csrf
-                                        <input type="search" name="search" id="search" placeholder="Search..." class="form-control bg-dark text-white">
+                                        <input type="search" name="search" id="search" placeholder="Search..."
+                                            class="form-control bg-dark text-white">
                                     </form>
                                 </div>
                             </div>
@@ -427,6 +430,22 @@
         crossorigin="anonymous"></script>
     <!-- APP SCRIPT -->
     <script defer src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('search').on('keyup', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: "search",
+                    type: "GET",
+                    data: ('search': query) {
+                        $ {
+                            '#search_list'
+                        }.html(data);
+                    }
+                })
+            });
+        });
+    </script>
 
 </body>
 

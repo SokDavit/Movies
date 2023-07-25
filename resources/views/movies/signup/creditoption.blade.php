@@ -150,8 +150,8 @@
                 @csrf
                 <input type="tel" name="cardnumber" id="cardnumber" placeholder="Card Number" class="form-control">
                 <div class="input-group">
-                    <input type="date" name="expiration" id="expiration" class="form-control">
-                    <input type="text" name="cvv" id="cvv" class="form-control">
+                    <input type="tel" name="expiration" id="expiration" class="form-control" placeholder="Expiration Date">
+                    <input type="tel" name="cvv" id="cvv" class="form-control" placeholder="CVV">
                 </div>
                 <input type="text" name="firstname" placeholder="First Name" class="form-control">
                 <input type="text" name="lastname" placeholder="Last Name" class="form-control">

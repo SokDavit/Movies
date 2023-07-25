@@ -22,7 +22,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             grid-gap: 25px;
-            cursor: pointer;
         }
 
         .price-col {
@@ -31,6 +30,13 @@
             border-radius: 25px;
             color: #fff;
         }
+
+        /* .price-col input[type="radio"]{
+            -webkit-appearance: none;
+            appearance: none;
+            height: 100%;
+            width: 100%;
+        } */
 
         .price-col ul {
             list-style-type: none;
@@ -81,13 +87,10 @@
             justify-content: center;
             align-items: center;
             color: gray;
-            max-height: 0;
+            max-height: 1;
             overflow: hidden;
         }
 
-        .selected.click-selected {
-            max-height: 1;
-        }
 
         .selected i {
             display: flex;
@@ -146,7 +149,7 @@
     </div>
     <div class="container">
         <div class="price-row unselected">
-            <div class="price-col">
+            <div class="price-col" id="choose">
                 <div class="section-header">
                     <div>
                         <h2><b>Premium</b></h2>
@@ -306,12 +309,23 @@
             Premium, 2 with Standard, and 1 with Basic and Mobile.</p>
     </div>
     <div class="text-center">
-        <button type="button" class="btn btn-danger get-start " onclick="window.location='{{ route('paymenPicker') }}'"><h3 class="m-0"><b>Next</b></h3></button>
+        <button type="button" class="btn btn-danger get-start "
+            onclick="window.location='{{ route('paymenPicker') }}'">
+            <h3 class="m-0"><b>Next</b></h3>
+        </button>
     </div>
     <footer>
         <p></p>
     </footer>
 
+    <script>
+        let select = document.getElementById('select');
+        let choose = document.getElementById('choose');
+
+        onclick.choose = function() {
+            select.style.maxHeight = '1';
+        };
+    </script>
 </body>
 
 </html>
