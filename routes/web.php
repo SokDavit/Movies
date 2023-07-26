@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\MoviePlayController;
 use App\Http\Controllers\UserController;
@@ -17,41 +18,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//--------------------------------------------------------------------LOGIN ADMIN-------------------------------------------------------------------------------------
+//---------------------------------------------------LOGIN ADMIN-------------------------------------------------------------------------------------
 Route::get('/admin/login-form', [LoginAdminController::class, 'loginForm'])->name('admin.login-form');
 Route::post('/admin/login', [LoginAdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
-// MOVIES DASH
-Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+// MOVIES DASHBOARD
 Route::get('/admin/movie', [AdminController::class, 'movie'])->name('admin.movie.index');
-Route::get('/admin/movie/film', [AdminController::class, 'film'])->name('admin.movie.film');
+Route::get('/admin/movie/film', [FilmController::class, 'index'])->name('admin.movie.film');
 Route::get('/admin/movie/film/add', [AdminController::class, 'film_add'])->name('admin.movie.film.add');
-
 Route::get('/admin/movie/film/{id}', [AdminController::class, 'film_view'])->name('admin.movie.film.view');
 Route::get('/admin/movie/tv-show', [AdminController::class, 'tv_show'])->name('admin.movie.tv-show');
 Route::get('/admin/movie/tv-show/{id}', [AdminController::class, 'tv_show_view'])->name('admin.movie.tv-show.view');
+Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+Route::get('/admin/feedback', [AdminController::class, 'feedback'])->name('admin.feedback');
 
 // MIDDLEWARE ADMIN
 Route::group(['middleware' => ['admin.checker']], function () {
-    Route::get('/admin/dashboard', function(){
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', function () {
         return view('admin.index');
-    }); 
+    });
     Route::get('/admin/movie/index', function () {
         return view('admin.movies.index');
     })->name('admin.movie');
-    Route::get('/admin/movie/film/index', function(){
+    Route::get('/admin/movie/film/index', function () {
         return view('admin.movies.film.index');
     });
-    Route::get('/admin/movie/tv-show/index', function(){
+    Route::get('/admin/movie/tv-show/index', function () {
         return view('admin.movies.tv-show.index');
     });
-    Route::get('/movie/film/add', function(){
+    Route::get('/movie/film/add', function () {
         return view('admin.movies.film.add');
+    });
+    Route::get('/admin/user/index', function(){
+        return view('admin.user.index');
+    });
+    Route::get('/admin/feedback/index', function(){
+        return view('admin.feedback.index');
     });
 });
 
-//--------------------------------------------------------------------LOGIN MOVIES------------------------------------------------------------------------------------
+//-------------------------------------------------------LOGIN USER MOVIES------------------------------------------------------------------------------------
 Route::get('/', [UserController::class, 'loginForm'])->name('movies.login-form');
 Route::get('/signin', [UserController::class, 'signIn'])->name('signin');
 Route::post('/signup', [UserController::class, 'signup'])->name('signup');
@@ -66,17 +74,17 @@ Route::get('/forgotpassword', function () {
     return view('movies.signup.forgotpassword');
 });
 // SIGNIN EXIST
-Route::get('/password',[UserController::class, 'regForm'])->name('regForm');
+Route::get('/password', [UserController::class, 'regForm'])->name('regForm');
 // REGISTER FORM
-Route::get('/regForm',function(){
+Route::get('/regForm', function () {
     return view('movies.signup.regForm');
 });
-// HIGHT CHOOSE YOUR PLAN
-Route::get('/signup', function(){
+// HIGHLIGHT CHOOSE YOUR PLAN
+Route::get('/signup', function () {
     return view('movies.signup.choosecredit');
 })->name('chooseplan');
-// SUBSCRIPTION PLATFORM 
-Route::get('/signup/platform', function(){
+// SUBSCRIPTION PLATFORM
+Route::get('/signup/platform', function () {
     return view('movies.signup.platform');
 });
 // PAYMENT
@@ -89,17 +97,13 @@ Route::get('/signup/creditoption', function () {
 Route::get('/paymentSuccessfuly', function () {
     return view('movies.signup.paymentSuccesfuly');
 });
-Route::get('/show/{id}',[MoviePlayController::class, 'movie_show'])->name('show');
+Route::get('/show/{id}', [MoviePlayController::class, 'movie_show'])->name('show');
 Route::get('/movies', [MoviePlayController::class, 'index'])->name('movies');
 Route::get('/movies-2', [MoviePlayController::class, 'movies']);
 Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
 Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
 Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
 Route::get('/result', [MoviePlayController::class, 'result'])->name('result');
-// MIDDLEWARE MOVIES 
+// MIDDLEWARE MOVIES
 Route::group(['middleware' => ['login.checker']], function () {
-    
-    
-   
 });
-

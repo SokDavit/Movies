@@ -182,7 +182,7 @@
                     I agree.
                 </label>
             </div>
-            <button type="button" value="submitButton">Start Membership</button>
+            <button type="button" value="submitButton" onclick="window.location='{{ route('movies') }}'">Start Membership</button>
             <p>
                 This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.
             </p>

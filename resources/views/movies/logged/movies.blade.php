@@ -25,11 +25,18 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
+        .paginate{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .pagination {
-            position: fixed;
-            left: 50%;
+            margin-top:20px;
+            display: flex;
+            left: -50%;
             bottom: 20px;
-            transform: translate(-50%);
+            transform: translate(-50%, -50%);
             --bs-pagination-active-bg: #F6121D;
             --bs-pagination-disabled-bg: #252525;
             --bs-pagination-disabled-color: #fff;
@@ -162,9 +169,12 @@
     </div>
     <!-- END NAV -->
     {{-- pagination --}}
-    <div class="unselected">
-        {{ $movies->links('vendor.pagination.bootstrap-5') }}
+    <div class="paginate">
+        <div class="unselected">
+            {{ $movies->links('vendor.pagination.bootstrap-5') }}
+        </div>
     </div>
+
 
     <!-- SCRIPT -->
     <!-- JQUERY -->

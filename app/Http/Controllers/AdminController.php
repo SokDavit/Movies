@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Models\TV_Show;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+
 
 class AdminController extends Controller
 {
@@ -14,7 +16,8 @@ class AdminController extends Controller
     {
         $movie = Movie::count();
         $tv = TV_Show::count();
-        return view('admin.index', compact('movie', 'tv'));
+        $user = User::count();
+        return view('admin.index', compact('movie', 'tv', 'user'));
     }
     public function movie(Request $request)
     {
@@ -41,5 +44,15 @@ class AdminController extends Controller
         $movie = Movie::count();
         $tv = TV_Show::count();
         return view('admin.movies.tv-show.index', compact('movie', 'tv'));
+    }
+
+    public function user()
+    {
+        return view('admin.user.index');
+    }
+
+    public function feedback()
+    {
+        return view('admin.feedback.index');
     }
 }

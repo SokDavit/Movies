@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TV_Show extends Model
 {
     use HasFactory;
-    protected $table= 'movie';
+    protected $table= 'tv-show';
     protected $primaryKey= 'id';
     protected $fillable = ['title', 'sesonNumber', 'year', 'age' , 'quality', 'description' , 'rating' , 'poster' ];
 }

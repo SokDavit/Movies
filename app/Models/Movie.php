@@ -10,5 +10,5 @@ class Movie extends Model
     use HasFactory;
     protected $table= 'movie';
     protected $primaryKey= 'id';
-    protected $fillable = ['title', 'duration', 'year', 'poster' , 'description'];
+    protected $fillable = ['title', 'description', 'quality' , 'duration', 'age' , 'poster' , 'year' , 'rating', 'created_at', 'updated_at'];
 }

@@ -165,12 +165,11 @@
                             <h1>Jujutsu Kaisen</h1>
                         </div>
                         <div class="description">
-                            {{-- <p>{{ $movies->description }}</p> --}}
+                            <p>{{ $movies->description }}</p>
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                {{-- <a href="{{ route('play', $movies->id) }}" class="btn btn-danger p-3">Watch Now</a> --}}
-                                <a href="" class="btn btn-danger p-3">Watch Now</a>
+                                <a href="{{ route('play', $movies->id) }}" class="btn btn-danger p-3">Watch Now</a>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-outline-secondary p-3">Trailer</button>

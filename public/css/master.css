@@ -203,7 +203,7 @@ nav ul li > a>i{
 .search_bar{
   display: flex;
   padding: 10px;
-  
+
   /* justify-content: space-between; */
 }
 .search_bar input{
@@ -290,4 +290,32 @@ tr:nth-child(even){
 }
 .link-header:hover{
   text-decoration: underline;
+}
+
+/* MOVIE-FILM ADD FORM */
+.form-add{
+    padding: 30px;
+
+}
+.form-add form{
+    display: grid;
+}
+.form-add input{
+    width: 250px;
+    padding: 10px;
+    color: black;
+    border: 1px solid black;
+
+    margin: 10px 0 0 0;
+}
+.form-add textarea{
+    max-width: 250px;
+    padding: 10px;
+    border: 1px solid black;
+}
+.form-add button{
+    padding: 10px;
+    margin-top: 10px;
+    width: 250px;
+    border-radius:5px;
 }

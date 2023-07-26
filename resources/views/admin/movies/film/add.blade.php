@@ -9,28 +9,28 @@
         </h1>
     </div>
     <section class="main-course">
-        <div class="course-box">
+        <div class="course-box form-add">
             <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <label for="title">Title:</label>
-                <input type="text">
+                <input type="text" name="title" id="title" placeholder="Title...">
 
                 <label for="description">Description:</label>
-                <input type="text">
+                <input type="text" name="description" id="description" placeholder="Desciption...">
 
                 <label for="duration">Duration:</label>
-                <input type="text">
+                <input type="text" name="duration" id="duration" placeholder="Duration...">
 
                 <label for="Year">Year:</label>
-                <input type="text">
+                <textarea type="date" name="description" id="description" placeholder="Desciption..."></textarea>
 
                 <label for="quality">Quality:</label>
-                <input type="text">
+                <input type="text" name="description" id="description" placeholder="Desciption...">
 
-                <input type="file" name="" id="">
+                <input type="file" name="" id="" >
 
                 <button type="submit" value="buttonSubmit">Add</button>
             </form>
         </div>
-    </section>  
+    </section>
 @endsection

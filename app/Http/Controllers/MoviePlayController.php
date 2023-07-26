@@ -31,7 +31,7 @@ class MoviePlayController extends Controller
 
     public function tv_show()
     {
-        $movies = Movie::paginate(10);
+        $movies = Movie::paginate(6);
         return view('movies.logged.tv-show', compact('movies'));
         // return 'calling movies function';
     }
@@ -55,7 +55,7 @@ class MoviePlayController extends Controller
     public function movie_search(Request $request)
     {
         $search = $request->search;
-        $movies = Movie::where('title', 'LIKE', '%{$search}%')->get();
+        $movies = Movie::where('title', 'LIKE', '%',$search,'%')->get();
         if($movies->count()>0){
             // return view('movies.logged.result', compact( 'movies'));
             return $movies;
@@ -63,7 +63,7 @@ class MoviePlayController extends Controller
             return Redirect::route('result')->with('errno','Result No Found.');
         }
         // return Redirect::route('result')->with('errno', 'result no found.');
-        
+
     }
 
     // MOVIES LIVE SEARCH

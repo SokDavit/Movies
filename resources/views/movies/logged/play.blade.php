@@ -33,10 +33,10 @@
             margin: 0 10px 0 5px;
         }
 
-        /* .modal-backdrop {
+        .modal-backdrop {
             --bs-backdrop-zindex: 1;
 
-        } */
+        }
 
         input[type="search"]::-webkit-input-placeholder {
             color: white;
@@ -173,7 +173,7 @@
             <div class="d-flex p-3 bg">
                 <div class="col-8">
                     <div class="header-title">
-                        {{-- <h2>{{ $movies->title }} ( {{ $movies->year }}  )</h2> --}}
+                        <h2>{{ $movies->title }} ( {{ $movies->year }}  )</h2>
                     </div>
                     <div class="d-flex detail">
                         <p>Genre:</p>
@@ -199,7 +199,7 @@
 
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -212,12 +212,12 @@
                 You May Also Like
             </div>
             <div class="grid ">
-                {{-- @foreach ($related as $movie) --}}
-                    {{-- <a href="{{ route('show', $movie->id) }}" class="movie-item"> --}}
+                @foreach ($related as $movie)
+                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
                         <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
-                                {{-- {{ $movie->title }} --}}
+                                {{ $movie->title }}
                             </div>
                             <div class="movie-infos">
                                 <div class="movie-info">
@@ -226,7 +226,7 @@
                                 </div>
                                 <div class="movie-info">
                                     <i class="bx bxs-time"></i>
-                                    {{-- <span>{{ $movie->duration }} mins</span> --}}
+                                    <span>{{ $movie->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
                                     <span>HD</span>
@@ -237,7 +237,7 @@
                             </div>
                         </div>
                     </a>
-                {{-- @endforeach --}}
+                @endforeach
             </div>
         </div>
     </div>

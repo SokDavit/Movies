@@ -44,33 +44,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="nav-link">
+                    <a href="{{ route('admin.user') }}" class="nav-link">
                         <i class="bi bi-people-fill"></i>
                         <span>User</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="nav-link">
-                        <i class="bi bi-archive-fill"></i>
-                        <span>Archive</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="nav-link">
-                        <i class="bi bi-bank"></i>
-                        <span>Bank</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="nav-link">
+                    <a href="{{ route('admin.feedback') }}" class="nav-link">
                         <i class="bi bi-envelope"></i>
-                        <span>Mail</span>
+                        <span>Feedback</span>
                     </a>
                 </li>
                 <li>
                     <a href="" class="nav-link">
                         <i class="bi bi-graph-up-arrow"></i>
-                        <span>Invoice</span>
+                        <span>Report</span>
                     </a>
                 </li>
                 <li>
@@ -79,7 +67,7 @@
                 </li>
                 <!-- LOGOUT -->
                 <li>
-                    <a href="" class="logout" class="nav-link">
+                    <a href="{{ route('admin.logout') }}" class="logout" class="nav-link">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Log out</span>
                     </a>

@@ -20,11 +20,33 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
+        .paginate {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            left: -50%;
+            bottom: 20px;
+            transform: translate(-50%, -50%);
+            --bs-pagination-active-bg: #F6121D;
+            --bs-pagination-disabled-bg: #252525;
+            --bs-pagination-disabled-color: #fff;
+            --bs-pagination-hover-bg: #F6121D;
+            --bs-pagination-hover-color: #fff;
+            --bs-pagination-focus-bg: #F6121D;
+            --bs-pagination-active-color: #fff;
+        }
+/*
         .pagination {
             position: fixed;
             left: 50%;
@@ -37,7 +59,7 @@
             --bs-pagination-hover-color: #fff;
             --bs-pagination-focus-bg: #F6121D;
             --bs-pagination-active-color: #fff;
-        }
+        } */
 
         .pagination li {
             margin: 5px;
@@ -162,15 +184,10 @@
         </div>
     </div>
     <!-- END NAV -->
-    {{-- pagination --}}
-    {{-- <div class="pagination">
-        <a href="/#?=1" class="active">1</a>
-        <a href="#2" class="active">2</a>
-        <a href="#3" class="active">3</a>
-        <a href="#4" class="active">Last</a>
-    </div> --}}
-    <div class="unselected">
-        {{ $movies->links('vendor.pagination.bootstrap-5') }}
+    <div class="paginate">
+        <div class="unselected">
+            {{ $movies->links('vendor.pagination.bootstrap-5') }}
+        </div>
     </div>
     <!-- SCRIPT -->
     <!-- JQUERY -->

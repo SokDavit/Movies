@@ -43,8 +43,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>The Flash</td>
-                        <td>120min</td>
+                        <td>{{ $films->title }}</td>
+                        <td>{{ $film->duration }}</td>
                         <td>1080p</td>
                         <td>8.5</td>
                         <td>2023</td>
