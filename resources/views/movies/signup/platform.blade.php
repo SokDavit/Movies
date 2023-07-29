@@ -29,14 +29,15 @@
             padding: 10px 10px;
             border-radius: 25px;
             color: #fff;
+            cursor: pointer;
         }
 
-        /* .price-col input[type="radio"]{
+        .price-col input[type="radio"] {
             -webkit-appearance: none;
             appearance: none;
             height: 100%;
             width: 100%;
-        } */
+        }
 
         .price-col ul {
             list-style-type: none;
@@ -68,6 +69,13 @@
 
         .price-col ul li div p:nth-child(2) {
             font-weight: 700;
+        }
+
+
+        .price-col input[type="radio"]::before {
+            position: absolute;
+            left: 0;
+            top: 0;
         }
 
         .section-header {
@@ -149,7 +157,7 @@
     </div>
     <div class="container">
         <div class="price-row unselected">
-            <div class="price-col" id="choose">
+            <div class="price-col" id="choose" onclick="window.location='{{ route('paymenPicker', 3) }}'">
                 <div class="section-header">
                     <div>
                         <h2><b>Premium</b></h2>
@@ -197,12 +205,12 @@
                     </li>
                     <li>
                 </ul>
-                <div class="selected" id="select">
+                {{-- <div class="selected" id="select">
                     <i class="bi bi-check2"></i>
                     <p>Selected</p>
-                </div>
+                </div> --}}
             </div>
-            <div class="price-col">
+            <div class="price-col" onclick="window.location='{{ route('paymenPicker', 2) }}'">
                 <div class="section-header">
                     <div>
                         <h2><b>Standard</b></h2>
@@ -251,7 +259,7 @@
                     <li>
                 </ul>
             </div>
-            <div class="price-col">
+            <div class="price-col" onclick="window.location='{{ route('paymenPicker', 1) }}'">
                 <div class="section-header">
                     <div>
                         <h2><b>Basic</b></h2>
@@ -263,7 +271,7 @@
                         <i class="bi bi-check-circle-fill"></i>
                         <div>
                             <p>Monthly price</p>
-                            <p>3.99$/month</p>
+                            <p>2.99$/month</p>
                         </div>
                     </li>
                     <li>
@@ -308,24 +316,17 @@
             Only people who live with you may use your account. Watch on 4 different devices at the same time with
             Premium, 2 with Standard, and 1 with Basic and Mobile.</p>
     </div>
-    <div class="text-center">
+    {{-- <div class="text-center">
         <button type="button" class="btn btn-danger get-start "
             onclick="window.location='{{ route('paymenPicker') }}'">
             <h3 class="m-0"><b>Next</b></h3>
         </button>
-    </div>
+    </div> --}}
     <footer>
         <p></p>
     </footer>
 
-    <script>
-        let select = document.getElementById('select');
-        let choose = document.getElementById('choose');
-
-        onclick.choose = function() {
-            select.style.maxHeight = '1';
-        };
-    </script>
+    <script></script>
 </body>
 
 </html>

@@ -22,15 +22,16 @@
                         Sort
                     </button>
                     <input type="search" name="search" id="search" class="input-search " placeholder="Search...">
-                    <button type="button" class="btn btn-search" >
+                    <button type="button" class="btn btn-search">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button type="button" class="btn btn-add" onclick="window.location='{{ route('admin.movie.add') }}'">+ Add New</button>
+                    <button type="button" class="btn btn-add" onclick="window.location='{{ route('admin.movie.add') }}'">+
+                        Add New</button>
                 </div>
             </div>
         </section>
-        <section class="main-course">
-            <div class="course-box">
+        <section class="">
+            <div class="">
                 <table>
                     <thead>
                         <tr>
@@ -45,26 +46,24 @@
                     </thead>
                     <tbody>
                         @foreach ($films as $film)
-                            <a href="#">
-                                <tr>
-                                    <td><input type="checkbox"  name="chkIds[]" id="chkIds[]"
-                                            class="checkboxname">
-                                    </td>
-                                    <td>{{ $film->title }}</td>
-                                    <td>{{ $film->duration }}</td>
-                                    <td>{{ $film->quality }}</td>
-                                    <td>{{ $film->rating }}</td>
-                                    <td>{{ $film->year }}</td>
-                                    <td>
-                                        <button type="button" onclick="window.location='{{ route('edit', $film->id) }}'" value="action-edit" class="btn-action action-edit">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button type="button" onclick="window.location='{{ route('destroy', $film->id) }}'" value="action-delete" class="btn-action action-delete">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </a>
+                            <tr>
+                                <td><input type="checkbox" name="chkIds[]" id="chkIds[]" class="checkboxname"></td>
+                                <td>{{ $film->title }}</td>
+                                <td>{{ $film->duration }}</td>
+                                <td>{{ $film->quality }}</td>
+                                <td>{{ $film->rating }}</td>
+                                <td>{{ $film->year }}</td>
+                                <td>
+                                    <button type="button" onclick="window.location='{{ route('edit', $film->id) }}'"
+                                        value="action-edit" class="btn-action action-edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button type="button" onclick="window.location='{{ route('destroy', $film->id) }}'"
+                                        value="action-delete" class="btn-action action-delete">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
@@ -79,16 +78,13 @@
             if (myCheckbox.checked == true) {
                 checkboxes.forEach(function(checkbox) {
                     checkbox.checked = true;
-
                 });
             } else {
                 checkboxes.forEach(function(checkbox) {
                     checkbox.checked = false;
                 });
-                
+
             }
         }
-        
-        
     </script>
 @endsection

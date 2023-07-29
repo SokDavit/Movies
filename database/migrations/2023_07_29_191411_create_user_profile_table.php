@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('userprofile', function (Blueprint $table) {
-            $table->id();
+        Schema::create('userProfile', function (Blueprint $table) {
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('user');
             $table->string('nickname');
             $table->string('avatar');
             $table->timestamps();
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('userprofile');
+        Schema::dropIfExists('userProfile');
     }
 };

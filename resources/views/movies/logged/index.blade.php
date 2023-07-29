@@ -304,7 +304,7 @@
             </div>
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
-                @foreach ($animes as $anime)
+                {{-- @foreach ($animes as $anime)
                     <a href="{{ route('show', $anime->id) }}" class="movie-item">
                         <img src="{{ $anime->poster }}" alt="">
                         <div class="movie-item-content">
@@ -329,7 +329,7 @@
                             </div>
                         </div>
                     </a>
-                @endforeach
+                @endforeach --}}
                 <!-- END MOVIE ITEM -->
             </div>
         </div>

@@ -42,7 +42,7 @@
                 <label for="">Payment Successfuly</label>
             </div>
             <div>
-                <button class="btn btn-danger" onclick="location.window='/'">Next</button>
+                <button class="btn btn-danger" onclick="window.location='/'">Next</button>
             </div>
         </div>
     </div>

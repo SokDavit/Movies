@@ -255,7 +255,7 @@ nav ul li > a>i{
   border: none;
   background: none;
   padding: 10px;
-
+  cursor: pointer;
 }
 .btn-danger{
   background: red;
@@ -405,9 +405,11 @@ input{
   border: none;
   border-radius: 50%;
   color: #fff;
+  cursor: pointer;
 }
 .action-edit{
   background: #394D89;
+  
 }
 .action-delete{
   background: #e50914;

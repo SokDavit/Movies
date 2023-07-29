@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CreditCard extends Model
+class SubPlan extends Model
 {
     use HasFactory;
-    protected $table= 'creditcard';
+    protected $table = 'subplan';
     protected $primaryKey = 'id';
-    protected $fillable = ['cardnumber', 'expiration_date', 'cvv', 'cardHolderName'];
+    protected $fillable = [ 'name', 'price'];
 }

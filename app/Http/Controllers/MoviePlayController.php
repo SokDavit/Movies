@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -13,15 +14,13 @@ class MoviePlayController extends Controller
     //
     public function index(Request $request)
     {
-        $data = User::where('id', session('user_id'))->first();
-        if ($data && $data->subscription != 'none') {
+        $user = User::where('id', session('user_id'))->first();
+        $sub = Subscription::where('id', $user->subId)->first();
+        if ($user && $sub->status == true) {
             $date = '2023-01-01';
             $slides = Movie::where('year', '>', $date)->limit(3)->get();
             $movies = Movie::where('genre_id', '1')->get();
-            $animes = Movie::whereRow('genre_id', '=' , '(SELECT genre_id WHERE genre_type = "Animation")')->get();
-            dd($animes);
-            // return $animes;
-            return view('movies.logged.index', compact('slides', 'movies', 'animes'));
+            return view('movies.logged.index', compact('slides', 'movies'));
         }
         return Redirect::route('movies.login-form');
     }

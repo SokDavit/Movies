@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\MoviePlayController;
+use App\Http\Controllers\paymentControlker;
+use App\Http\Controllers\paymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,10 +33,10 @@ Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
 Route::get('/admin/feedback', [AdminController::class, 'feedback'])->name('admin.feedback');
 // FILM CUSTOMIZE
 Route::get('/admin/movie/film', [FilmController::class, 'index'])->name('admin.movie.film');
-Route::get('/admin/movie/add', function(){ 
+Route::get('/admin/movie/add', function () {
     return view('admin.movie.film.add');
 })->name('admin.movie.add');
-Route::post('/admin/movie/film/update/{id}',[FilmController::class, 'update'])->name('film.update');
+Route::post('/admin/movie/film/update/{id}', [FilmController::class, 'update'])->name('film.update');
 Route::post('/admin/movie/film/deleteRecords', [FilmController::class, 'deleteRecord'])->name('deleteRecord');
 Route::get('/admin/movie/film/deleteRecord/{id}', [FilmController::class, 'destroy'])->name('destroy');
 Route::get('/admin/movie/film/editRecord/{id}', [FilmController::class, 'edit'])->name('edit');
@@ -58,10 +60,10 @@ Route::group(['middleware' => ['admin.checker']], function () {
     Route::get('/movie/film/add', function () {
         return view('admin.movie.film.add');
     });
-    Route::get('/admin/user/index', function(){
+    Route::get('/admin/user/index', function () {
         return view('admin.user.index');
     });
-    Route::get('/admin/feedback/index', function(){
+    Route::get('/admin/feedback/index', function () {
         return view('admin.feedback.index');
     });
 });
@@ -95,22 +97,23 @@ Route::get('/signup/platform', function () {
     return view('movies.signup.platform');
 });
 // PAYMENT
-Route::get('/signup/paymentPicker', function () {
-    return view('movies.signup.paymentPicker');
-})->name('paymenPicker');
-Route::get('/signup/creditoption', function () {
-    return view('movies.signup.creditoption');
-})->name('creditoption');;
+Route::get('/signup/paymentPicker/{id}',[paymentController::class, 'paymentPicker'])->name('paymenPicker');;
+Route::get('/signup/creditoption', [paymentController::class, 'creditoption'])->name('creditoption');
+Route::post('/payment', [paymentController::class, 'payment'])->name('payment');
 Route::get('/paymentSuccessfuly', function () {
     return view('movies.signup.paymentSuccesfuly');
-});
-Route::get('/show/{id}', [MoviePlayController::class, 'movie_show'])->name('show');
-Route::get('/movies', [MoviePlayController::class, 'index'])->name('movies');
-Route::get('/movies-2', [MoviePlayController::class, 'movies']);
-Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
-Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
-Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
-Route::get('/result', [MoviePlayController::class, 'result'])->name('result');
+})->name('paymentSuccess');
+
 // MIDDLEWARE MOVIES
 Route::group(['middleware' => ['login.checker']], function () {
+    Route::get('/show/{id}', [MoviePlayController::class, 'movie_show'])->name('show');
+    Route::get('/movies', [MoviePlayController::class, 'index'])->name('movies');
+    Route::get('/movies-2', [MoviePlayController::class, 'movies']);
+    Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
+    Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
+    Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
+    Route::get('/result', [MoviePlayController::class, 'result'])->name('result');
 });
+
+
+// 

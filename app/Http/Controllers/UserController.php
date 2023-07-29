@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         // CHECK SUB
         $data = User::where('id', session('user_id'))->first();
-        if (session('user_logged_in') && $data->subscription != 'none') {
+        if (session('user_logged_in') ) {
             return Redirect::route('movies');
         }
         return view('movies.index');

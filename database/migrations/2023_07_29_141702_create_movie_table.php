@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('age');
             $table->string('quality')->default('HD');
             $table->text('description');
-            $table->string('rating')->default(0);
             $table->string('poster', 255);
+            $table->string('background', 255);
             $table->unsignedBigInteger('genre_id');
-            $table->foreign('genre_id')->references('id')->on('genre');
+            $table->foreign('genre_id')->references('genre_id')->on('genre');
             $table->timestamps();
         });
     }

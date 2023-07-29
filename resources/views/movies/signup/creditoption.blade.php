@@ -17,19 +17,21 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <style>
         section {
-            position: relative;
+            /* position: relative; */
             margin: auto;
             /* top: 50%;
             transform: translate(-50%, -50%); */
             width: 440px;
 
         }
-        .section-header>p{
+
+        .section-header>p {
             font-family: 'Poppins', sans-serif;
             font-weight: 0;
             font-size: 13px;
             margin: 20px 0 0 0;
         }
+
         .section-header h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -42,12 +44,17 @@
         }
 
         .section-header .img img {
-            margin-right:5px;
+            margin-right: 5px;
             max-width: auto;
             height: auto;
         }
-        .section-body form input{
+
+        .section-body input {
             font-family: 'Poppins', sans-serif;
+            margin: 10px 0;
+            padding: 12px;
+            border: 1px solid gray;
+            border-radius: 5px;
         }
 
         .editplan {
@@ -60,16 +67,19 @@
             border: none;
             border-radius: 5px;
         }
-        .editplan div .price{
+
+        .editplan div .price {
             font-family: 'Poppins', sans-serif;
             font-weight: bold;
         }
-        .editplan div .type{
+
+        .editplan div .type {
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             color: #8c8c8c;
         }
-        .editplan>div:nth-child(2) a{
+
+        .editplan>div:nth-child(2) a {
             font-family: 'Poppins', sans-serif;
             font-weight: bold;
         }
@@ -82,11 +92,13 @@
             margin: 20px 0 0 0;
 
         }
-        .section-footer .form-check label{
+
+        .section-footer .form-check label {
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
             margin-bottom: 20px;
         }
+
         .section-footer button {
             font-family: 'Poppins', sans-serif;
             width: 100%;
@@ -100,14 +112,7 @@
             align-items: center;
         }
 
-        form>input {
-            margin: 10px 0;
-        }
-        .section-body form input{
-            padding: 12px;
-            border: 1px solid gray;
-            border-radius: 5px;
-        }
+
         .input-group {
             display: flex;
             gap: 10px;
@@ -132,7 +137,6 @@
             </div>
     </nav>
 
-
     <section>
         <div class="section-header">
             <p>STEP 3 OF 3</p>
@@ -145,48 +149,52 @@
                 <img src="{{ asset('img/2766977.png') }}" alt="mastercard" width="32px">
             </div>
         </div>
-        <div class="section-body">
-            <form action="" method="post">
-                @csrf
+        <form action="{{ route('payment') }}" method="post">
+            @csrf
+            <div class="section-body">
                 <input type="tel" name="cardnumber" id="cardnumber" placeholder="Card Number" class="form-control">
                 <div class="input-group">
-                    <input type="tel" name="expiration" id="expiration" class="form-control" placeholder="Expiration Date">
+                    <input type="tel" name="expiration_date" id="expiration_date" class="form-control"
+                        placeholder="Expiration Date">
                     <input type="tel" name="cvv" id="cvv" class="form-control" placeholder="CVV">
                 </div>
                 <input type="text" name="firstname" placeholder="First Name" class="form-control">
                 <input type="text" name="lastname" placeholder="Last Name" class="form-control">
-            </form>
-            <div class="editplan">
-                <div>
-                    <div class="price"> {{-- PLAN PRICE --}}
-                        USD2.99/month
+
+                <div class="editplan">
+                    <div>
+                        <div class="price"> {{-- PLAN PRICE --}}
+                            USD{{ $plan->price }}/month
+                        </div>
+                        <div class="type"> {{-- TYPE DEVICE --}}
+                            Mobile
+                        </div>
                     </div>
-                    <div class="type"> {{-- TYPE DEVICE --}}
-                        Mobile
+                    <div>
+                        <a href="/signup/platform" class="under">Change</a>
                     </div>
                 </div>
-                <div>
-                    <a href="/signup/platform" class="under">Change</a>
+            </div>
+            <div class="section-footer">
+                <p>By checking the checkbox below, you agree to our Terms of Use, Privacy Statement, and that you are
+                    over
+                    18. Netflix will automatically continue your membership and charge the membership fee (currently
+                    USD{{ $plan->price }}/month) to your payment method until you cancel. You may cancel at any time to
+                    avoid future
+                    charges.
+                </p>
+                <div class="form-check unselected">
+                    <input class="form-check-input" type="checkbox" id="agree">
+                    <label class="form-check-label" for="agree">
+                        I agree.
+                    </label>
                 </div>
+                <button type="submit" value="submitButton">Start Membership</button>
+                <p>
+                    This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.
+                </p>
             </div>
-        </div>
-        <div class="section-footer">
-            <p>By checking the checkbox below, you agree to our Terms of Use, Privacy Statement, and that you are over
-                18. Netflix will automatically continue your membership and charge the membership fee (currently
-                USD2.99/month) to your payment method until you cancel. You may cancel at any time to avoid future
-                charges.
-            </p>
-            <div class="form-check unselected">
-                <input class="form-check-input" type="checkbox" id="agree">
-                <label class="form-check-label" for="agree">
-                    I agree.
-                </label>
-            </div>
-            <button type="button" value="submitButton" onclick="window.location='{{ route('movies') }}'">Start Membership</button>
-            <p>
-                This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.
-            </p>
-        </div>
+        </form>
     </section>
 </body>
 

@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('card', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('users');
+        Schema::create('creditcard', function (Blueprint $table) {
+            $table->id();
             $table->string('cardnumber');
-            $table->string('expiration');
+            $table->string('expiration_date');
             $table->string('cvv');
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('cardHolderName');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('card');
+        Schema::dropIfExists('creditcard');
     }
 };

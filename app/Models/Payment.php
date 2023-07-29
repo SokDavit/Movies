@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CreditCard extends Model
+class Payment extends Model
 {
     use HasFactory;
-    protected $table= 'creditcard';
+    protected $table = 'payment';
     protected $primaryKey = 'id';
-    protected $fillable = ['cardnumber', 'expiration_date', 'cvv', 'cardHolderName'];
+    protected $fillable = [ 'userId', 'subId' , 'payment_date', 'amount', 'cardId'];
 }

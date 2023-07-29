@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('subscription', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('subPlanId');
+            $table->foreign('subPlanId')->references('id')->on('subPlan');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
