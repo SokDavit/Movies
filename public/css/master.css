@@ -91,11 +91,13 @@ nav ul li > a>i{
   display: flex;
   width: 100%;
 }
-.main-top i{
+.main-top button{
   position: absolute;
+  font-size: 1.5rem;
   right: 0;
   margin: 10px 30px;
-  color: rgb(110, 109, 109);
+  background: transparent;
+  color: black;
   cursor: pointer;
 }
 .main-skills{
@@ -226,31 +228,63 @@ nav ul li > a>i{
 
 
 /*  */
-.btn{
-  margin-left: 20px;
-  width: 250px;
-  background: red;
+.section-field{
+  max-width: 100%;
+  background: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+.field-box {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 1.2rem;
+  justify-content: space-between;
+}
+.input-search{
+  padding: 10px;
+  width: 250px;
+  border: 1px solid;
+}
+.field-box .search-field select{
+  padding: 10px;
+  border: 1px solid;
+}
+.field-box .search-field .filter{
+  border: 1px solid;
+  padding: 10px;
+}
+.btn {
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.btn:hover{
-  background:#e50914;
-}
-.btn-action{
-  border: none;
-  color: white;
-  background: #222222;
-  padding: 6px;
-  border-radius: 5px;
-}
+  background: none;
+  padding: 10px;
 
+}
+.btn-danger{
+  background: red;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.btn-search{
+  background: #f6121d;
+  border-radius: 5px;
+  color: #fff;
+  width: 100px;
+  height: 43px;
+}
+.btn-add{
+  background: #f6121d;
+  border-radius: 5px;
+  color: #fff;
+  width: 100px;
+  height: 43px;
+}
+.btn-icon{
+  background: red;
+  color: #fff;
+  height: 43px;
+  border-radius: 5px;
+  overflow: hidden;
+}
 table{
   position: relative;
   width: 100%;
@@ -273,6 +307,9 @@ th{
 td{
   padding: 1rem 2rem;
 }
+th:nth-child(1){
+  width: 30px;
+}
 tr:nth-child(even){
   background: #f4f6fb;
 
@@ -293,29 +330,85 @@ tr:nth-child(even){
 }
 
 /* MOVIE-FILM ADD FORM */
-.form-add{
-    padding: 30px;
+.title{
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  background: #f4f6fb;
+}
+.title h1{
+  padding: 20px;
+}
+.title button{
+  margin: 15px 20px 0 0;
+}
+.field{
+  display: flex;
+  width: 100%;
+  padding: 30px;
+  gap: 15px;
+}
+.sub-field{
+  display: flex;
+  gap: 15px;
+}
+.input-field{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.input-field textarea{
+  display: flex;
+  height: 120px;
+  border: 1px solid ;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.input-field input{
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.input-field select{
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+input{
+  margin-bottom: 10px;
+}
+.float-right{
+  display: block;
+  right: 10px;
+}
 
+/* Alert */
+.alert{
+  margin: 10px 30px 0 30px;
+  display: flex;
+  justify-content: space-between;
 }
-.form-add form{
-    display: grid;
+.alert i{
+  cursor: pointer;
 }
-.form-add input{
-    width: 250px;
-    padding: 10px;
-    color: black;
-    border: 1px solid black;
+.alert-success{
+  padding: 10px;
+  border: 2px solid  #0f5132;
+  border-radius: 5px;
+  background: #75b798;
+}
 
-    margin: 10px 0 0 0;
+.btn-action{
+  background: transparent;
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
 }
-.form-add textarea{
-    max-width: 250px;
-    padding: 10px;
-    border: 1px solid black;
+.action-edit{
+  background: #394D89;
 }
-.form-add button{
-    padding: 10px;
-    margin-top: 10px;
-    width: 250px;
-    border-radius:5px;
+.action-delete{
+  background: #e50914;
 }

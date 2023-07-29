@@ -25,14 +25,16 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
-        .paginate{
+        .paginate {
             position: relative;
+            margin-top: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .pagination {
-            margin-top:20px;
+            margin-top: 20px;
             display: flex;
             left: -50%;
             bottom: 20px;
@@ -88,7 +90,7 @@
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
                     <li><a href="/movies-2">Movies</a></li>
-                    <li><a href="/tv-show">TV-Show</a></li>
+                    {{-- <li><a href="/tv-show">TV-Show</a></li> --}}
                 </ul>
 
 
@@ -140,7 +142,7 @@
             <div class="grid ">
                 @foreach ($movies as $movie)
                     <a href="{{ route('show', $movie->id) }}" class="movie-item">
-                        <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
+                        <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $movie->title }}

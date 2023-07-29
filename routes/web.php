@@ -24,14 +24,21 @@ Route::post('/admin/login', [LoginAdminController::class, 'login'])->name('admin
 Route::get('/admin/logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
 // MOVIES DASHBOARD
 Route::get('/admin/movie', [AdminController::class, 'movie'])->name('admin.movie.index');
-Route::get('/admin/movie/film', [FilmController::class, 'index'])->name('admin.movie.film');
-Route::get('/admin/movie/film/add', [AdminController::class, 'film_add'])->name('admin.movie.film.add');
-Route::get('/admin/movie/film/{id}', [AdminController::class, 'film_view'])->name('admin.movie.film.view');
+
 Route::get('/admin/movie/tv-show', [AdminController::class, 'tv_show'])->name('admin.movie.tv-show');
 Route::get('/admin/movie/tv-show/{id}', [AdminController::class, 'tv_show_view'])->name('admin.movie.tv-show.view');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
 Route::get('/admin/feedback', [AdminController::class, 'feedback'])->name('admin.feedback');
-
+// FILM CUSTOMIZE
+Route::get('/admin/movie/film', [FilmController::class, 'index'])->name('admin.movie.film');
+Route::get('/admin/movie/add', function(){ 
+    return view('admin.movie.film.add');
+})->name('admin.movie.add');
+Route::post('/admin/movie/film/update/{id}',[FilmController::class, 'update'])->name('film.update');
+Route::post('/admin/movie/film/deleteRecords', [FilmController::class, 'deleteRecord'])->name('deleteRecord');
+Route::get('/admin/movie/film/deleteRecord/{id}', [FilmController::class, 'destroy'])->name('destroy');
+Route::get('/admin/movie/film/editRecord/{id}', [FilmController::class, 'edit'])->name('edit');
+Route::post('/admin/movie/film/store', [FilmController::class, 'store'])->name('film.store');
 // MIDDLEWARE ADMIN
 Route::group(['middleware' => ['admin.checker']], function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
@@ -40,16 +47,16 @@ Route::group(['middleware' => ['admin.checker']], function () {
         return view('admin.index');
     });
     Route::get('/admin/movie/index', function () {
-        return view('admin.movies.index');
+        return view('admin.movie.index');
     })->name('admin.movie');
     Route::get('/admin/movie/film/index', function () {
-        return view('admin.movies.film.index');
+        return view('admin.movie.film.index');
     });
     Route::get('/admin/movie/tv-show/index', function () {
-        return view('admin.movies.tv-show.index');
+        return view('admin.movie.tv-show.index');
     });
     Route::get('/movie/film/add', function () {
-        return view('admin.movies.film.add');
+        return view('admin.movie.film.add');
     });
     Route::get('/admin/user/index', function(){
         return view('admin.user.index');

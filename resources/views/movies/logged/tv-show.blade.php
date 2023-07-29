@@ -46,7 +46,8 @@
             --bs-pagination-focus-bg: #F6121D;
             --bs-pagination-active-color: #fff;
         }
-/*
+
+        /*
         .pagination {
             position: fixed;
             left: 50%;
@@ -155,7 +156,7 @@
             <div class="grid ">
                 @foreach ($movies as $movie)
                     <a href="{{ route('show', $movie->id) }}" class="movie-item">
-                        <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
+                        <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $movie->title }}

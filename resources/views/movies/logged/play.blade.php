@@ -104,7 +104,7 @@
                 <ul class="nav-menu " id="nav-menu" style="margin: 0;">
                     <li><a href="/movies">Home</a></li>
                     <li><a href="/movies-2">Movies</a></li>
-                    <li><a href="/tv-show">TV-Show</a></li>
+                    {{-- <li><a href="/tv-show">TV-Show</a></li> --}}
                 </ul>
 
 
@@ -166,7 +166,7 @@
     <!-- END NAV -->
     <!-- MOVIE PLAY  -->
     <div class="ratio ratio-21x9">
-        <iframe src="https://www.youtube.com/embed/bNYzCTUGFOo" allowfullscreen></iframe>
+        <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
     </div>
     <div class="section">
         <div class="container">
@@ -214,7 +214,7 @@
             <div class="grid ">
                 @foreach ($related as $movie)
                     <a href="{{ route('show', $movie->id) }}" class="movie-item">
-                        <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
+                        <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $movie->title }}

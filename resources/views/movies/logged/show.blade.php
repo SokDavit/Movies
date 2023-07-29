@@ -24,21 +24,16 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
         input[type="search"]::-webkit-input-placeholder {
             color: white;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(6, minmax(50px, 1fr));
-        }
-
-        .grid a {
-            margin: 0 10px 10px 0;
         }
 
         .nav-menu {
@@ -49,19 +44,20 @@
             position: absolute;
             width: 100%;
             min-height: 100vh;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             display: flex;
             background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-                                            rgba(0, 0, 0, 0.8));
+                    rgba(0, 0, 0, 0.8));
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
 
-        .hero video {
+        /* .hero video {
             width: 100%;
             min-width: 100vh;
-        }
+        } */
 
         .hero img {
             width: 100%;
@@ -71,16 +67,11 @@
             background-position: center;
         }
 
-        .video-back {
+        .img-back {
             position: absolute;
             right: 0;
             bottom: 0;
             z-index: -1;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(50px, 1fr));
         }
 
         .description {
@@ -89,6 +80,68 @@
 
         .profile>i {
             margin: 0 10px 0 5px;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 50%;
+        }
+
+        .title-header h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .desc-body {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+        .sub-detail{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sub-detail span:nth-child(2){
+            padding: 3px 10px;
+            background: red;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .btn-foot {
+            display: flex;
+            padding: 10px 0;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .btn-foot button:nth-child(1){
+            height: 75px;
+        }
+        .btn-foot button:nth-child(1) i{
+            font-size: 40px;
+        }
+        .btn-foot button:nth-child(2) {
+            background: transparent;
+            /* padding: 10px 0; */
+            height: 75px;
+            border: 1px solid #A3A3A3;
+        }
+        .btn-foot button:nth-child(2) i{
+            font-size: 30px;
+        }
+        .btn-trailer {
+            position: absolute;
+            bottom: 40px;
+            font-size: 3rem;
+            transition: .3s;
+        }
+
+        .btn-trailer:hover {
+            color: #A3A3A3;
         }
     </style>
 </head>
@@ -105,7 +158,7 @@
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
                     <li><a href="/movies-2">Movies</a></li>
-                    <li><a href="/tv-show">TV-Show</a></li>
+                    {{-- <li><a href="/tv-show">TV-Show</a></li> --}}
                 </ul>
 
 
@@ -156,32 +209,44 @@
                 src="{{ asset('video/Jujutsu Kaisen Season 2 Official Trailer 2 (English Sub ) Extended Version.mp4') }}"
                 type="video/mp4">
         </video> --}}
-        <img src="{{ asset('img/cartoons/Jujutsu-Kaisen-0-But-Why-Tho-1.jpg') }}" alt="" class="video-back">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="item-content">
-                        <div class="title">
-                            <h1>Jujutsu Kaisen</h1>
+        <img src="{{ $movies->background }}" alt="" class="img-back">
+        <section>
+            <div class="container">
+                <div class="detail-box">
+                    <div class="title-header">
+                        <h1>{{ $movies->title }}</h1>
+                    </div>
+                    <div class="desc-body">
+                        <div class="sub-detail">
+                            <span>{{ $movies->year }}</span>
+                            |
+                            <span>16+</span>
+                            |
+                            <span>{{ $movies->duration }} mins</span>
                         </div>
-                        <div class="description">
-                            <p>{{ $movies->description }}</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <a href="{{ route('play', $movies->id) }}" class="btn btn-danger p-3">Watch Now</a>
-                            </div>
-                            <div class="col-4">
-                                <button class="btn btn-outline-secondary p-3">Trailer</button>
-                            </div>
-                        </div>
+                        <span>{{ $movies->description }}</span>
+
+                    </div>
+                    <div class="btn-foot">
+                        <button type="button" class="btn btn-danger"  onclick="window.location='{{ route('play', $movies->id) }}'">
+                            <i class="bi bi-play-fill"></i>
+                            <span>Play</span>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            <i class="bi bi-plus-lg"></i>
+                            <span>My list</span>
+                        </button>
+                    </div>
+                    <div class="trailer">
+                        <button type="button" class="btn btn-trailer">
+                            <i class="bi bi-play-circle"></i>
+                            <span>Watch Trailer</span>
+                        </button>
                     </div>
                 </div>
-                <div class="col">
-
-                </div>
             </div>
-        </div>
+
+        </section>
 
     </div>
 

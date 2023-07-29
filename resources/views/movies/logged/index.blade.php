@@ -63,7 +63,7 @@
                 <ul class="nav-menu unselected" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
                     <li><a href="/movies-2">Movies</a></li>
-                    <li><a href="/tv-show">TV-Show</a></li>
+                    {{-- <li><a href="/tv-show">TV-Show</a></li> --}}
                 </ul>
 
                 <div class="profile unselected">
@@ -135,125 +135,47 @@
         <div class="hero-slide">
             <div class="owl-carousel carousel-nav-center" id="hero-carousel">
                 <!-- SLIDE ITEM -->
-                <div class="hero-slide-item">
-                    <img src="{{ asset('img/black-banner.png') }}" alt="">
-                    <div class="overlay"></div>
-                    <div class="hero-slide-item-content">
-                        <div class="item-content-wraper">
-                            <div class="item-content-title top-down">
-                                Black Panther
-                            </div>
-                            <div class="movie-infos top-down delay-2">
-                                <div class="movie-info">
-                                    <i class="bx bxs-star"></i>
-                                    <span>9.5</span>
+                @foreach ($slides as $silde)
+                    <div class="hero-slide-item">
+                        <img src="{{ $silde->background }}" alt="">
+                        <div class="overlay"></div>
+                        <div class="hero-slide-item-content">
+                            <div class="item-content-wraper">
+                                <div class="item-content-title top-down">
+                                    {{ $silde->title }}
                                 </div>
-                                <div class="movie-info">
-                                    <i class="bx bxs-time"></i>
-                                    <span>120 mins</span>
+                                <div class="movie-infos top-down delay-2">
+                                    <div class="movie-info">
+                                        <i class="bx bxs-star"></i>
+                                        <span>9.5</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="bx bxs-time"></i>
+                                        <span>{{ $silde->duration }} mins</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>{{ $silde->quality }}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>{{ $silde->age }}</span>
+                                    </div>
                                 </div>
-                                <div class="movie-info">
-                                    <span>HD</span>
+                                <div class="item-content-description top-down delay-4">
+                                    {{ $silde->description }}
                                 </div>
-                                <div class="movie-info">
-                                    <span>16+</span>
-                                </div>
-                            </div>
-                            <div class="item-content-description top-down delay-4">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt
-                                non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias
-                                ratione mollitia accusantium, facere ab suscipit.
-                            </div>
-                            <div class="item-action top-down delay-6">
-                                {{-- <a href="{{ route('archive', 1) }}" class="btn btn-hover"> --}}
-                                <i class="bx bxs-right-arrow"></i>
-                                <span>Watch now</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END SLIDE ITEM -->
-                <!-- SLIDE ITEM -->
-                <div class="hero-slide-item">
-                    <img src="{{ asset('img/supergirl-banner.jpg') }}" alt="">
-                    <div class="overlay"></div>
-                    <div class="hero-slide-item-content">
-                        <div class="item-content-wraper">
-                            <div class="item-content-title top-down">
-                                Supergirl
-                            </div>
-                            <div class="movie-infos top-down delay-2">
-                                <div class="movie-info">
-                                    <i class="bx bxs-star"></i>
-                                    <span>9.5</span>
-                                </div>
-                                <div class="movie-info">
-                                    <i class="bx bxs-time"></i>
-                                    <span>120 mins</span>
-                                </div>
-                                <div class="movie-info">
-                                    <span>HD</span>
-                                </div>
-                                <div class="movie-info">
-                                    <span>16+</span>
-                                </div>
-                            </div>
-                            <div class="item-content-description top-down delay-4">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt
-                                non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias
-                                ratione mollitia accusantium, facere ab suscipit.
-                            </div>
-                            <div class="item-action top-down delay-6">
-                                <a href="#" class="btn btn-hover">
+                                <div class="item-action top-down delay-6">
+                                    <a href="{{ route('show', $silde->id ) }}" class="btn btn-hover">
                                     <i class="bx bxs-right-arrow"></i>
                                     <span>Watch now</span>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
                 <!-- END SLIDE ITEM -->
                 <!-- SLIDE ITEM -->
-                <div class="hero-slide-item">
-                    <img src="{{ asset('img/wanda-banner.jpg') }}" alt="">
-                    <div class="overlay"></div>
-                    <div class="hero-slide-item-content">
-                        <div class="item-content-wraper">
-                            <div class="item-content-title top-down">
-                                Wanda Vision
-                            </div>
-                            <div class="movie-infos top-down delay-2">
-                                <div class="movie-info">
-                                    <i class="bx bxs-star"></i>
-                                    <span>9.5</span>
-                                </div>
-                                <div class="movie-info">
-                                    <i class="bx bxs-time"></i>
-                                    <span>120 mins</span>
-                                </div>
-                                <div class="movie-info">
-                                    <span>HD</span>
-                                </div>
-                                <div class="movie-info">
-                                    <span>16+</span>
-                                </div>
-                            </div>
-                            <div class="item-content-description top-down delay-4">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt
-                                non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias
-                                ratione mollitia accusantium, facere ab suscipit.
-                            </div>
-                            <div class="item-action top-down delay-6">
-                                <a href="#" class="btn btn-hover">
-                                    <i class="bx bxs-right-arrow"></i>
-                                    <span>Watch now</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END SLIDE ITEM -->
+                
             </div>
         </div>
         <!-- END HERO SLIDE -->
@@ -261,10 +183,9 @@
         <div class="top-movies-slide">
             <div class="owl-carousel" id="top-movies-slide">
                 <!-- MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
-                    <div class="movie-item">
-                        <img src="{{ asset('img/series/supergirl.jpg') }}" alt="">
+                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
+                        <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $movie->title }}
@@ -286,7 +207,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
                 <!-- END MOVIE ITEM -->
             </div>
@@ -304,11 +225,11 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
-                    <a href="#" class="movie-item">
-                        <img src="{{ asset('img/movies/theatre-dead.jpg') }}" alt="">
+                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
+                        <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
-                                Theatre of the dead
+                                {{ $movie->title }}
                             </div>
                             <div class="movie-infos">
                                 <div class="movie-info">
@@ -317,7 +238,7 @@
                                 </div>
                                 <div class="movie-info">
                                     <i class="bx bxs-time"></i>
-                                    <span>120 mins</span>
+                                    <span>{{ $movie->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
                                     <span>HD</span>
@@ -336,7 +257,7 @@
     <!-- END LATEST MOVIES SECTION -->
 
     <!-- LATEST SERIES SECTION -->
-    <div class="section">
+    {{-- <div class="section">
         <div class="container">
             <div class="section-header">
                 latest series
@@ -345,7 +266,7 @@
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
                     <a href="#" class="movie-item">
-                        <img src="{{ asset('img/series/supergirl.jpg') }}" alt="">
+                        <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 Supergirl
@@ -372,7 +293,7 @@
                 <!-- END MOVIE ITEM -->
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- END LATEST SERIES SECTION -->
 
     <!-- LATEST CARTOONS SECTION -->
@@ -383,12 +304,12 @@
             </div>
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
-                @foreach ($movies as $movie)
-                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
-                        <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
+                @foreach ($animes as $anime)
+                    <a href="{{ route('show', $anime->id) }}" class="movie-item">
+                        <img src="{{ $anime->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
-                                {{ $movie->title }}
+                                {{ $anime->title }}
                             </div>
                             <div class="movie-infos">
                                 <div class="movie-info">
@@ -397,7 +318,7 @@
                                 </div>
                                 <div class="movie-info">
                                     <i class="bx bxs-time"></i>
-                                    <span>{{ $movie->duration }} mins</span>
+                                    <span>{{ $anime->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
                                     <span>HD</span>

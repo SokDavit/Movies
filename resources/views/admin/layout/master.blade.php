@@ -8,16 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- Font Awesome Cdn Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <style>
-        /* a>i{
-           font-size: 25px;
-           margin: 0 10px 0 10px;
-        }
-        a {
-            display: flex;
-            align-items: center;
-        } */
-    </style>
+    <!-- tag input -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    
 </head>
 
 <body>
@@ -62,6 +55,10 @@
                     </a>
                 </li>
                 <li>
+                    <a href="">
+                        <i class="bi bi-gear"></i>
+                        <span>Setting</span>
+                    </a>
                     {{-- <i class="bi bi-toggle-off"></i>
                     <i class="bi bi-toggle-on"></i> --}}
                 </li>

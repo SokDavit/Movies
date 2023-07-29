@@ -11,14 +11,14 @@
             <p>{{ $movie }}</p>
             <button type="button" onclick="window.location='{{ route('admin.movie.film') }}'">View</button>
         </div>
-        <div class="card">
+        {{-- <div class="card">
             <img src="{{ asset('img/icons/icons8-tv-24.png') }}" alt="">
             <h3>TV-Show</h3>
             <p>{{ $tv }}</p>
             <button type="button" onclick="window.location='{{ route('admin.movie.tv-show') }}'">View</button>
-        </div>
+        </div> --}}
         <div class="card">
-            <img src="{{ asset('img/icons/icons8-tv-24.png') }}" alt="">
+            <i class="bi bi-people-fill"></i>
             <h3>User</h3>
             <p>{{ $user }}</p>
             <button type="button" onclick="window.location='{{ route('admin.user') }}'">View</button>
@@ -27,6 +27,7 @@
             {{-- <img src="{{ asset('img/icons/icons8-tv-24.png') }}" alt=""> --}}
             <i class="bi bi-envelope"></i>
             <h3>Feedback</h3>
+            <p>0</p>
             {{-- <p>{{ $feedback }}</p> --}}
             <button type="button" onclick="window.location='{{ route('admin.feedback') }}'">View</button>
         </div>
