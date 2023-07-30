@@ -199,7 +199,7 @@
                                     <div class="movie-info">
                                         <span>{{ $silde->quality }}</span>
                                     </div>
-                                    <div class="movie-info">
+                                    <div class="movie-info">    
                                         <span>{{ $silde->age }}</span>
                                     </div>
                                 </div>
@@ -207,9 +207,13 @@
                                     {{ $silde->description }}
                                 </div>
                                 <div class="item-action top-down delay-6">
-                                    <a href="{{ route('show', $silde->id) }}" class="btn btn-hover">
+                                    <a href="{{ route('play', $silde->id) }}" class="btn btn-hover">
                                         <i class="bx bxs-right-arrow"></i>
                                         <span>Watch now</span>
+                                    </a>
+                                    <a href="" class="btn btn-outline-secondary">
+                                        <i class="bi bi-plus-lg"></i>
+                                        <span>My List</span>
                                     </a>
                                 </div>
                             </div>

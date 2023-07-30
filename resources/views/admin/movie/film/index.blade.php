@@ -30,8 +30,8 @@
                 </div>
             </div>
         </section>
-        <section class="">
-            <div class="">
+        <section class="main-course">
+            <div class="course-box">
                 <table>
                     <thead>
                         <tr>
@@ -47,7 +47,7 @@
                     <tbody>
                         @foreach ($films as $film)
                             <tr>
-                                <td><input type="checkbox" name="chkIds[]" id="chkIds[]" class="checkboxname"></td>
+                                <td><input type="checkbox" value="{{ $film->id }}" name="chkIds[]" id="chkIds[]" class="checkboxname"></td>
                                 <td>{{ $film->title }}</td>
                                 <td>{{ $film->duration }}</td>
                                 <td>{{ $film->quality }}</td>

@@ -35,16 +35,22 @@
 
                     <div class="input-field">
                         <label for="title">Title</label>
-                        <input type="text" name="title" id="title" placeholder="Title...">
-
+                        <input type="text" name="title" id="title" placeholder="Title..." {{ old('title') }}>
+                        @error('title')
+                            <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                        @enderror
                         <label for="description">Description</label>
                         <textarea type="text" name="description" id="description" placeholder="Desciption..."></textarea>
-
+                        @error('description')
+                            <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                        @enderror
                         <div class="sub-field">
                             <div class="input-field">
                                 <label for="duration">Duration</label>
                                 <input type="number" name="duration" id="duration" placeholder="Duration...">
-
+                                @error('duration')
+                                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                                @enderror
 
                             </div>
 
@@ -56,42 +62,59 @@
                                     <option value="1080">1080p (Full HD)</option>
                                     <option value="720">720p (Full HD)</option>
                                 </select>
+                                @error('quality')
+                                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-field">
                                 <label for="Age">Movie</label>
                                 <select name="age" id="age">
-                                    <option hidden selected>G</option>
+                                    <option hidden selected value=None>G</option>
                                     <option value="P">P</option>
                                     <option value="PG-13">PG-13</option>
                                     <option value="R">R</option>
                                     <option value="NC-17">NC-17</option>
                                     <option value="NR">NR</option>
                                 </select>
+                                @error('age')
+                                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                                @enderror
                             </div>
+                            
                             <div class="input-field">
                                 <label for="year">Release</label>
                                 <input type="date" name="year" id="year">
+                                @error('year')
+                                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                                @enderror
 
                             </div>
 
 
                         </div>
-                        <div class="input-field">
 
-                        </div>
                     </div>
                     <div class="input-field">
                         <label for="poster">Poster</label>
                         <input type="file" name="poster" id="poster">
-
+                        @error('poster')
+                            <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                        @enderror
                         <label for="background">Background</label>
                         <input type="file" name="background" id="background">
-
+                        @error('background')
+                            <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                        @enderror
                         <label for="url">URL</label>
                         <input type="text" name="url" id="url" placeholder="https://...">
-
+                        @error('url')
+                            <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                        @enderror
                         <label for="genre">Genre</label>
                         <input type="text" name="genre" id="genre" placeholder="Genre...">
+                        @error('genre')
+                            <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                        @enderror
                     </div>
 
                 </div>

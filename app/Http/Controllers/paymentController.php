@@ -16,7 +16,7 @@ class paymentController extends Controller
     public function paymentPicker(Request $request, string $id)
     {
         $plan = SubPlan::where('id', $id)->first();
-        session(['plan_temp'=>$plan->id]);
+        session(['plan_temp' => $plan->id]);
         return view('movies.signup.paymentPicker', compact('plan'));
     }
     public function creditoption(Request $request)
@@ -27,15 +27,12 @@ class paymentController extends Controller
     //
     public function payment(Request $request)
     {
-        // $request->validate([
-        //     'cardnumber' => 'required',
-        //     'expirationDate' => 'required|max:4',
-        //     'cvv' => 'required|max:3',
-        //     'firstname' => 'required|min:20|max:30',
-        //     'lastname' => 'required|min:20|max:30',
-        // ],[
-        //     ''
-        // ]);
+        $request->validate([
+            'card_number' => 'required|digits:16',
+            'expiration_date' => 'required|date_format:Y/m',
+            'cvv' => 'required|digits:3',
+            'cardHolderName' => 'required|string',
+        ]);
         $user = User::where('id', session('user_id'))->first();
         $subPlan = SubPlan::where('id', session('plan_temp'))->first();
         //
@@ -58,13 +55,14 @@ class paymentController extends Controller
         $user->save();
 
         $payment = Payment::create([
+
             'userId' => $user->id,
             'subId' => $sub->id,
             'payment_date' => Carbon::today(),
             'amount' => $subPlan->price,
             'cardId' => $card->id,
         ]);
-        
+
 
         return Redirect::route('paymentSuccess');
     }

@@ -92,7 +92,7 @@
                     <input type="text" name="url" id="url" placeholder="https://..." value="{{ $film->url }}">
 
                     <label for="genre">Genre</label>
-                    <input type="text" name="genre_id" id="genre_id" placeholder="Genre..." value="{{ $film->genre_id }}">
+                    <input type="text" name="genre" id="genre" placeholder="Genre..." value="{{ $film->genre_id }}">
                 </div>
 
             </div>

@@ -35,15 +35,17 @@ class FilmController extends Controller
     public function store(Request $request)
     {
         // $request->validate([
-        //     'title'=> 'required',
-        //     'poster'=> 'required',
-        //     'description'=> 'required',
-        //     'duration'=> 'required',
-        //     'date'=> 'required',
-        //     'quality'=> 'required',
-        //     'genre_id'=>'required',
+        //     'title' => 'required',
+        //     'poster' => 'required|file',
+        //     'quality' => 'required',
+        //     'age' => 'required',
+        //     'year' => 'required',
+        //     'description' => 'required',
+        //     'duration' => 'required',
+        //     'date' => 'required',
+        //     'background' => 'required|file',
+        //     'genre' => 'required',
         // ]);
-
         $input = $request->all();
         $url = $request->url;
         $new_url = str_replace("watch?v=", "embed/", $url);
@@ -54,10 +56,15 @@ class FilmController extends Controller
         $input['poster'] = $poster;
         $input['background'] = $background;
         $input['url'] = $new_url;
-        $genre = Genre::create([
-            'genre_type' => $request->genre,
-        ]);
-        $input['genre_id'] = $genre->id;
+        $genre = Genre::where('genre_type', $request->genre)->first();
+        if ($genre && $genre->count() > 0) {
+            $input['genre_id'] = $genre->id;
+        } else {
+            $genre = Genre::create([
+                'genre_type' => $request->genre,
+            ]);
+            $input['genre_id'] = $genre->id;
+        }
         Movie::create($input);
         return Redirect::route('admin.movie.add')->with('msg', 'Film Uploaded successfuly');
     }
@@ -86,9 +93,19 @@ class FilmController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $films = Movie::where('id', $id)->first();
-
         $input = $request->all();
+        $films = Movie::where('id', $id)->first();
+        $genre = Genre::where('genre_type',$films->genre)->first();
+        if ($genre && $genre->count() > 0) {
+            $input['genre_id'] = $genre->id;
+        } else {
+            $genre = Genre::create([
+                'genre_type' => $request->genre,
+            ]);
+            $input['genre_id'] = $genre->id;
+        }
+
+
         if ($request->hasFile('poster') && $request->hasFile('background')) {
             $poster = '/img/movies/' . time() . '-' . $request->title . '.' . $request->poster->extension();
             $request->poster->move(public_path('img/movies/'), $poster);

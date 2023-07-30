@@ -33,10 +33,10 @@ class MoviePlayController extends Controller
                 ->paginate(6);
             // dd($movies);
             $animations = DB::table('Movie')
-            ->join('genre', 'movie.genre_id', 'genre.id')
-            ->select('movie.*', 'genre.genre_type')
-            ->where('genre_type', 'Animation')
-            ->paginate(6);
+                ->join('genre', 'movie.genre_id', 'genre.id')
+                ->select('movie.*', 'genre.genre_type')
+                ->where('genre_type', 'Animation')
+                ->paginate(6);
             // return dd($animations);
             return view('movies.logged.index', compact('slides', 'subSlides', 'movies', 'animations'));
         }
@@ -78,24 +78,24 @@ class MoviePlayController extends Controller
 
     public function movie_play(Request $request, string $id)
     {
-        // $genre = DB::table('movie')
-        //     ->where('movie.id', $id)
-        //     ->join('genre', 'movie.genre_id', 'genre.id')
-        //     ->select('genre_type')
-        //     ->first();
+        $genre = DB::table('movie')
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('genre_type')
+            ->where('movie.id', $id)
+            ->first();
+        // return dd($genre);
         $movies = Movie::where('id', $id)->first();
-        // $related = DB::table('genre')
-        //     ->whereNotIn('id', function ($query) use ($id) {
-        //         $query->select('genre_id')
-        //             ->from('movie')
-        //             ->where('movie.id', $id);
-        //     })
-        //     ->where('genre_type', $genre->genre_type)
-        //     ->select('genre_type')
-        //     ->get();
-        // return view('movies.logged.play', compact('movies', 'related'));
+        $related = DB::table('movie')
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('genre.*', 'movie.*')
+            ->whereNot(DB::raw('movie.id'), $id)
+            ->where('genre.genre_type', $genre->genre_type)
+            ->get();
+
+        // return dd($related);
+        return view('movies.logged.play', compact('movies', 'related'));
         return view('movies.logged.play', compact('movies'));
     }
     // MOVIES SEARCH
-   
+
 }

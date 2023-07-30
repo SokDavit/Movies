@@ -206,9 +206,9 @@
     </div>
     <!-- END NAV -->
     <!-- MOVIE PLAY  -->
-    <div class="ratio ratio-21x9">
-        <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
-    </div>
+        <div class="ratio ratio-21x9">
+            <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
+        </div>
     <div class="section">
         <div class="container">
             <div class="d-flex p-3 bg">
@@ -253,7 +253,7 @@
                 You May Also Like
             </div>
             <div class="grid ">
-                {{-- @foreach ($related as $movie)
+                @foreach ($related as $movie)
                     <a href="{{ route('show', $movie->id) }}" class="movie-item">
                         <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
@@ -263,22 +263,22 @@
                             <div class="movie-infos">
                                 <div class="movie-info">
                                     <i class="bx bxs-star"></i>
-                                    <span>9.5</span>
+                                    <span>{{ $movie->rating }}</span>
                                 </div>
                                 <div class="movie-info">
                                     <i class="bx bxs-time"></i>
                                     <span>{{ $movie->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>HD</span>
+                                    <span>{{ $movie->quality }}</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>16+</span>
+                                    <span>{{ $movie->age }}</span>
                                 </div>
                             </div>
                         </div>
                     </a>
-                @endforeach --}}
+                @endforeach
             </div>
         </div>
     </div>

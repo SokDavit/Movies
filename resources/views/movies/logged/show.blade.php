@@ -39,9 +39,11 @@
         .nav-menu {
             margin: 0;
         }
-        .nav-menu>li>a{
+
+        .nav-menu>li>a {
             padding: 10px 0;
         }
+
         .hero {
             position: absolute;
             width: 100%;
@@ -55,6 +57,7 @@
             background-size: cover;
             background-position: center;
         }
+
         .modal-backdrop {
             --bs-backdrop-zindex: 1;
 
@@ -101,17 +104,20 @@
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
         }
-        .sub-detail{
+
+        .sub-detail {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .sub-detail span:nth-child(2){
+
+        .sub-detail span:nth-child(2) {
             padding: 3px 10px;
             background: red;
             color: #fff;
             border-radius: 5px;
         }
+
         .btn-foot {
             display: flex;
             padding: 10px 0;
@@ -119,21 +125,25 @@
             margin: 10px 0;
         }
 
-        .btn-foot button:nth-child(1){
+        .btn-foot button:nth-child(1) {
             height: 75px;
         }
-        .btn-foot button:nth-child(1) i{
+
+        .btn-foot button:nth-child(1) i {
             font-size: 40px;
         }
+
         .btn-foot button:nth-child(2) {
             background: transparent;
             /* padding: 10px 0; */
             height: 75px;
             border: 1px solid #A3A3A3;
         }
-        .btn-foot button:nth-child(2) i{
+
+        .btn-foot button:nth-child(2) i {
             font-size: 30px;
         }
+
         .btn-trailer {
             position: absolute;
             bottom: 40px;
@@ -144,6 +154,7 @@
         .btn-trailer:hover {
             color: #A3A3A3;
         }
+
         ul li ul.dropdown li {
             display: block;
         }
@@ -159,21 +170,24 @@
         }
 
 
-        ul li:hover ul.dropdown{
+        ul li:hover ul.dropdown {
             display: flex;
         }
+
         .dropdown {
             list-style-type: none;
             display: flex;
             padding: 20px;
             gap: 30px;
         }
-        ul li ul.dropdown li{
+
+        ul li ul.dropdown li {
             margin: 0;
             margin-right: 30px;
             font-size: 12px;
         }
-        ul li ul.dropdown li a:hover{
+
+        ul li ul.dropdown li a:hover {
             background: red;
             color: #fff;
         }
@@ -281,18 +295,33 @@
                             |
                             <span>{{ $movies->genre_type }}</span>
                         </div>
-                        <span>{{ $movies->description }}</span>
 
                     </div>
                     <div class="btn-foot">
-                        <button type="button" class="btn btn-danger"  onclick="window.location='{{ route('play', $movies->id) }}'">
+                        <button type="button" class="btn btn-danger"
+                            onclick="window.location='{{ route('play', $movies->id) }}'">
                             <i class="bi bi-play-fill"></i>
                             <span>Play</span>
                         </button>
                         <button type="button" class="btn btn-danger">
                             <i class="bi bi-plus-lg"></i>
-                            <span>My list</span>
+                            <span>My List</span>
                         </button>
+                    </div>
+                    <!-- Full screen modal -->
+                    <div class="modal fade .modal-fullscreen-xl-down" id="exampleModalFullscreen" tabindex="2"
+                        aria-labelledby="exampleModalFullscreenLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="ratio ratio-21x9">
+                                        <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="trailer">
                         <button type="button" class="btn btn-trailer">
