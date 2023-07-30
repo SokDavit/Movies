@@ -643,7 +643,7 @@ footer .content {
 }
 
 .sub-menu {
-    background: black;
+    background: #2A2A2A;
     padding: 10px;
     color: #fff;
 }
@@ -676,4 +676,7 @@ footer .content {
 .sub-menu ul li {
     margin-bottom: 10px;
     font-size: 14px;
+}
+.sub-menu ul li a:hover{
+    text-decoration: underline;
 }

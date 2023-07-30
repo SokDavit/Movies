@@ -36,6 +36,9 @@
         .nav-menu {
             margin: 0;
         }
+        .nav-menu>li>a{
+            padding: 10px 0;
+        }
 
         .profile>i {
             margin: 0 10px 0 5px;
@@ -48,6 +51,40 @@
 
         input[type="search"]::-webkit-input-placeholder {
             color: white;
+        }
+
+        ul li ul.dropdown li {
+            display: block;
+        }
+
+        ul li ul.dropdown {
+            width: auto;
+            background: #2A2A2A;
+            position: absolute;
+            margin: 10px 0;
+            border-top: 1px solid red;
+            z-index: 999;
+            display: none;
+        }
+
+
+        ul li:hover ul.dropdown{
+            display: flex;
+        }
+        .dropdown {
+            list-style-type: none;
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+        ul li ul.dropdown li{
+            margin: 0;
+            margin-right: 30px;
+            font-size: 12px;
+        }
+        ul li ul.dropdown li a:hover{
+            background: red;
+            color: #fff;
         }
     </style>
 </head>
@@ -62,8 +99,14 @@
                 </a>
                 <ul class="nav-menu unselected" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
-                    <li><a href="/movies-2">Movies</a></li>
-                    {{-- <li><a href="/tv-show">TV-Show</a></li> --}}
+                    <li><a href="/movies-2">Movies</a>
+                        <ul class="dropdown">
+                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
+                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
+                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
 
                 <div class="profile unselected">
@@ -164,9 +207,9 @@
                                     {{ $silde->description }}
                                 </div>
                                 <div class="item-action top-down delay-6">
-                                    <a href="{{ route('show', $silde->id ) }}" class="btn btn-hover">
-                                    <i class="bx bxs-right-arrow"></i>
-                                    <span>Watch now</span>
+                                    <a href="{{ route('show', $silde->id) }}" class="btn btn-hover">
+                                        <i class="bx bxs-right-arrow"></i>
+                                        <span>Watch now</span>
                                     </a>
                                 </div>
                             </div>
@@ -175,7 +218,7 @@
                 @endforeach
                 <!-- END SLIDE ITEM -->
                 <!-- SLIDE ITEM -->
-                
+
             </div>
         </div>
         <!-- END HERO SLIDE -->
@@ -183,12 +226,12 @@
         <div class="top-movies-slide">
             <div class="owl-carousel" id="top-movies-slide">
                 <!-- MOVIE ITEM -->
-                @foreach ($movies as $movie)
-                    <a href="{{ route('show', $movie->id) }}" class="movie-item">
-                        <img src="{{ $movie->poster }}" alt="">
+                @foreach ($subSlides as $subSlide)
+                    <a href="{{ route('show', $subSlide->id) }}" class="movie-item">
+                        <img src="{{ $subSlide->poster }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
-                                {{ $movie->title }}
+                                {{ $subSlide->title }}
                             </div>
                             <div class="movie-infos">
                                 <div class="movie-info">
@@ -197,7 +240,7 @@
                                 </div>
                                 <div class="movie-info">
                                     <i class="bx bxs-time"></i>
-                                    <span>{{ $movie->duration }} mins</span>
+                                    <span>{{ $subSlide->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
                                     <span>HD</span>
@@ -304,7 +347,7 @@
             </div>
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
-                {{-- @foreach ($animes as $anime)
+                @foreach ($animations as $anime)
                     <a href="{{ route('show', $anime->id) }}" class="movie-item">
                         <img src="{{ $anime->poster }}" alt="">
                         <div class="movie-item-content">
@@ -329,7 +372,7 @@
                             </div>
                         </div>
                     </a>
-                @endforeach --}}
+                @endforeach
                 <!-- END MOVIE ITEM -->
             </div>
         </div>

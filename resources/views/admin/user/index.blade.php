@@ -37,37 +37,38 @@
                         <tr>
                             <th><input type="checkbox" id="selectAll" onchange="checkAll(this)"></th>
                             <th>Email</th>
-                            <th>Nickname</th>
-                            <th>Plan</th>
+                            <th>Subscription</th>
+                            <th>Started_at</th>
+                            <th>End_at</th>
                             <th>Active</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($films as $film)
+                        @foreach ($users as $user)
                             <a href="#">
                                 <tr>
-                                    <td><input type="checkbox" value="{{ $film->id }}" name="chkIds[]" id="chkIds[]"
+                                    <td><input type="checkbox" value="{{ $user->id }}" name="chkIds[]" id="chkIds[]"
                                             class="checkboxname">
                                     </td>
-                                    <td>{{ $film->title }}</td>
-                                    <td>{{ $film->duration }}</td>
-                                    <td>{{ $film->quality }}</td>
-                                    <td>{{ $film->rating }}</td>
-                                    <td>{{ $film->year }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->status }}</td>
+                                    <td>{{ $user->started_date }}</td>
+                                    <td>{{ $user->end_date }}</td>
+                                    <td>{{ $user->active }}</td>
                                     <td>
-                                        <button type="button" onclick="window.location='{{ route('edit', $film->id) }}'"
+                                        <button type="button" onclick="window.location='{{ route('edit', $user->id) }}'"
                                             value="action-edit" class="btn-action action-edit">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <button type="button" onclick="window.location='{{ route('destroy', $film->id) }}'"
+                                        <button type="button" onclick="window.location='{{ route('destroy', $user->id) }}'"
                                             value="action-delete" class="btn-action action-delete">
                                             <i class="bi bi-trash-fill"></i>
                                         </button>
                                     </td>
                                 </tr>
                             </a>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                     <tfoot>
                     </tfoot>

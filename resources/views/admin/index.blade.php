@@ -23,14 +23,6 @@
             <p>{{ $user }}</p>
             <button type="button" onclick="window.location='{{ route('admin.user') }}'">View</button>
         </div>
-        <div class="card">
-            {{-- <img src="{{ asset('img/icons/icons8-tv-24.png') }}" alt=""> --}}
-            <i class="bi bi-envelope"></i>
-            <h3>Feedback</h3>
-            <p>0</p>
-            {{-- <p>{{ $feedback }}</p> --}}
-            <button type="button" onclick="window.location='{{ route('admin.feedback') }}'">View</button>
-        </div>
     </div>
 
 @endsection

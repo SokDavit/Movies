@@ -39,7 +39,7 @@
                     @csrf
                     {{-- INCORRECT PASSWORD --}}
                     @if (session('erInco'))
-                        <div class="{{ session('erInco') }} border-0 text-white"
+                        <div class="alert alert-warning border-0 text-white"
                             style="background:#E87C03;font-wight:500;">Incorrect password. Please try again or you
                             can
                             <a href="/signup/forgotpassword"

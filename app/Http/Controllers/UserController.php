@@ -136,7 +136,7 @@ class UserController extends Controller
             $request->session()->pull('user_temp_in');
             return redirect('movies');
         } else {
-            return redirect()->back()->with('erInco', 'alert alert-warning');
+            return redirect()->back()->with('erInco', ' ');
         }
     }
 

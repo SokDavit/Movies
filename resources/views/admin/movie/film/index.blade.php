@@ -66,14 +66,13 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                    </tfoot>
                 </table>
             </div>
         </section>
     </form>
     <script>
         var checkboxes = document.querySelectorAll("input[type='checkbox']");
+
         function checkAll(myCheckbox) {
             if (myCheckbox.checked == true) {
                 checkboxes.forEach(function(checkbox) {

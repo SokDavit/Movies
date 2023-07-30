@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <!-- tag input -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
-    
+   
 </head>
 
 <body>
@@ -40,12 +40,6 @@
                     <a href="{{ route('admin.user') }}" class="nav-link">
                         <i class="bi bi-people-fill"></i>
                         <span>User</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.feedback') }}" class="nav-link">
-                        <i class="bi bi-envelope"></i>
-                        <span>Feedback</span>
                     </a>
                 </li>
                 <li>

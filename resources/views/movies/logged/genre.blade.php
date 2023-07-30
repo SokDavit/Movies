@@ -18,30 +18,62 @@
         crossorigin="anonymous" />
     <!-- BOX ICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <!--BOOSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
-        .nav-menu>li>a{
-            padding: 10px 0;
-        }
-        .profile>i {
-            margin: 0 10px 0 5px;
+        input[type="search"]::-webkit-input-placeholder {
+            color: white;
         }
 
         .modal-backdrop {
             --bs-backdrop-zindex: 1;
 
         }
-        input[type="search"]::-webkit-input-placeholder {
-            color: white;
+
+        .nav-menu>li>a {
+            padding: 10px 0;
+        }
+
+        .paginate {
+            position: relative;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            left: -50%;
+            bottom: 20px;
+            transform: translate(-50%, -50%);
+            --bs-pagination-active-bg: #F6121D;
+            --bs-pagination-disabled-bg: #252525;
+            --bs-pagination-disabled-color: #fff;
+            --bs-pagination-hover-bg: #F6121D;
+            --bs-pagination-hover-color: #fff;
+            --bs-pagination-focus-bg: #F6121D;
+            --bs-pagination-active-color: #fff;
+        }
+
+        .pagination li {
+            margin: 5px;
+        }
+
+
+        .page-link {
+            background: #252525;
+            color: #fff;
+            border: none;
         }
 
         .grid {
@@ -53,44 +85,14 @@
             margin: 0 10px 10px 0;
         }
 
-        .bg {
-            background: #262626;
+        .nav-menu {
+            margin: 0;
         }
 
-        .header-title {
-            margin-bottom: 30px;
-            padding-left: 20px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border-left: 4px solid var(--main-color);
-            display: flex;
-            align-items: center;
-
+        .profile>i {
+            margin: 0 10px 0 5px;
         }
 
-        .rating {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 50px;
-            max-height: 50px;
-            border-radius: 5px;
-            padding: 25px;
-            background: red;
-            color: #fff;
-            margin-right: 10px;
-            font-size: 20px;
-            font-weight:700;
-        }
-
-        .detail >a{
-            margin: 0 10px;
-            color: red;
-        }
-        .d-flex i{
-            color: #FFCC00;
-            background:#262626;
-        }
         ul li ul.dropdown li {
             display: block;
         }
@@ -106,21 +108,24 @@
         }
 
 
-        ul li:hover ul.dropdown{
+        ul li:hover ul.dropdown {
             display: flex;
         }
+
         .dropdown {
             list-style-type: none;
             display: flex;
             padding: 20px;
             gap: 30px;
         }
-        ul li ul.dropdown li{
+
+        ul li ul.dropdown li {
             margin: 0;
             margin-right: 30px;
             font-size: 12px;
         }
-        ul li ul.dropdown li a:hover{
+
+        ul li ul.dropdown li a:hover {
             background: red;
             color: #fff;
         }
@@ -130,13 +135,13 @@
 <body>
 
     <!-- NAV -->
-    <div class="nav-wrapper ">
-        <div class="container ">
+    <div class="nav-wrapper">
+        <div class="container">
             <div class="nav">
                 <a href="/movies" class="logo">
                     MOVIES
                 </a>
-                <ul class="nav-menu " id="nav-menu" style="margin: 0;">
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
                     <li>
                         <a href="/movies-2">Movies</a>
@@ -204,56 +209,13 @@
             </div>
         </div>
     </div>
-    <!-- END NAV -->
-    <!-- MOVIE PLAY  -->
-    <div class="ratio ratio-21x9">
-        <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
-    </div>
-    <div class="section">
-        <div class="container">
-            <div class="d-flex p-3 bg">
-                <div class="col-8">
-                    <div class="header-title">
-                        <h2>{{ $movies->title }} ( {{ $movies->year }}  )</h2>
-                    </div>
-                    <div class="d-flex detail">
-                        <p>Genre:</p>
-                        <a href="#">Adventure</a>
-                        <p>,</p>
-                        <a href="#">Fantasy</a>
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="d-flex">
-                        <div class="rating">
-                            8.5
-                        </div>
-                        <div class="row">
-                            <p style="font-size:12px; font-weight:500; margin:0;">rating</p>
-                            <div class="d-flex">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
-                                <i class="bi bi-star"></i>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
     <div class="section">
         <div class="container">
             <div class="section-header">
-                You May Also Like
+                {{ $movies[0]->genre_type }} Movies
             </div>
             <div class="grid ">
-                {{-- @foreach ($related as $movie)
+                @foreach ($movies as $movie)
                     <a href="{{ route('show', $movie->id) }}" class="movie-item">
                         <img src="{{ $movie->poster }}" alt="">
                         <div class="movie-item-content">
@@ -263,32 +225,32 @@
                             <div class="movie-infos">
                                 <div class="movie-info">
                                     <i class="bx bxs-star"></i>
-                                    <span>9.5</span>
+                                    <span>{{ $movie->rating }}</span>
                                 </div>
                                 <div class="movie-info">
                                     <i class="bx bxs-time"></i>
                                     <span>{{ $movie->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>HD</span>
+                                    <span>{{ $movie->quality }}</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>16+</span>
+                                    <span>{{ $movie->age }}</span>
                                 </div>
                             </div>
                         </div>
                     </a>
-                @endforeach --}}
+                @endforeach
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
+    <!-- END NAV -->
+    {{-- pagination --}}
+    <div class="paginate">
+        <div class="unselected">
+            {{ $movies->links('vendor.pagination.bootstrap-5') }}
+        </div>
+    </div>
 
 
     <!-- SCRIPT -->
@@ -300,7 +262,7 @@
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
         crossorigin="anonymous"></script>
     <!-- APP SCRIPT -->
-    <script defer src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

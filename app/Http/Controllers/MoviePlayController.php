@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class MoviePlayController extends Controller
@@ -19,9 +21,28 @@ class MoviePlayController extends Controller
         if ($user && $sub->status == true) {
             $date = '2023-01-01';
             $slides = Movie::where('year', '>', $date)->limit(3)->get();
-            $movies = Movie::where('genre_id', '1')->get();
-            return view('movies.logged.index', compact('slides', 'movies'));
+            $subSlides = DB::table('Movie')
+                ->where('movie.year', '>', $date)
+                ->join('genre', 'movie.genre_id', 'genre.id')
+                ->select('movie.*')
+                ->paginate(10);
+            $movies = DB::table('Movie')
+                ->join('genre', 'movie.genre_id', 'genre.id')
+                ->select('movie.*', 'genre.genre_type')
+                ->where('genre_type', 'Action')
+                ->paginate(6);
+            // dd($movies);
+            $animations = DB::table('Movie')
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('movie.*', 'genre.genre_type')
+            ->where('genre_type', 'Animation')
+            ->paginate(6);
+            // return dd($animations);
+            return view('movies.logged.index', compact('slides', 'subSlides', 'movies', 'animations'));
         }
+
+
+        // return dd($movies);
         return Redirect::route('movies.login-form');
     }
 
@@ -40,37 +61,41 @@ class MoviePlayController extends Controller
 
     public function movie_show(Request $request, string $id)
     {
-        $movies = Movie::where('id', $id)->first();
-
+        $genre = DB::table('movie')
+            ->where('movie.id', $id)
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('genre_type')
+            ->first();
+        $movies = DB::table('Movie')
+            ->where('movie.id', $id)
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('movie.*', 'genre.genre_type')
+            ->where('genre_type', $genre->genre_type)
+            ->first();
+        // return dd($movies);
         return view('movies.logged.show', compact('movies'));
     }
 
     public function movie_play(Request $request, string $id)
     {
+        // $genre = DB::table('movie')
+        //     ->where('movie.id', $id)
+        //     ->join('genre', 'movie.genre_id', 'genre.id')
+        //     ->select('genre_type')
+        //     ->first();
         $movies = Movie::where('id', $id)->first();
-        $related = Movie::limit(6)->get();
-
-        return view('movies.logged.play', compact('movies', 'related'));
-        // return $related;
+        // $related = DB::table('genre')
+        //     ->whereNotIn('id', function ($query) use ($id) {
+        //         $query->select('genre_id')
+        //             ->from('movie')
+        //             ->where('movie.id', $id);
+        //     })
+        //     ->where('genre_type', $genre->genre_type)
+        //     ->select('genre_type')
+        //     ->get();
+        // return view('movies.logged.play', compact('movies', 'related'));
+        return view('movies.logged.play', compact('movies'));
     }
     // MOVIES SEARCH
-    public function movie_search(Request $request)
-    {
-        $search = $request->search;
-        $movies = Movie::where('title', 'LIKE', '%' . $search . '%')->get();
-        if ($movies->count() > 0) {
-            // return view('movies.logged.result', compact( 'movies'));
-            return $movies;
-        } else {
-            return Redirect::route('result')->with('errno', 'Result No Found.');
-        }
-        // return Redirect::route('result')->with('errno', 'result no found.');
-
-    }
-
-    // MOVIES LIVE SEARCH
-    public function livesearch()
-    {
-        return '';
-    }
+   
 }

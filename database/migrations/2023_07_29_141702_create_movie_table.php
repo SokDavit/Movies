@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('duration', 10);
-            $table->string('year', 4);
+            $table->date('year');
             $table->string('age');
             $table->string('quality')->default('HD');
             $table->text('description');
@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('background', 255);
             $table->unsignedBigInteger('genre_id');
             $table->foreign('genre_id')->references('genre_id')->on('genre');
+            $table->string('url');
+            $table->string('rating');
+            $table->bigInteger('watched');
             $table->timestamps();
         });
     }

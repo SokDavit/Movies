@@ -10,6 +10,6 @@ class Genre extends Model
     use HasFactory;
 
     protected $table ='genre';
-    protected $primaryKey = 'genre_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['genre_type', 'created_at', 'updated_at'];
 }

@@ -20,11 +20,24 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
+        input[type="search"]::-webkit-input-placeholder {
+            color: white;
+        }
+
+        .modal-backdrop {
+            --bs-backdrop-zindex: 1;
+
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(50px, 1fr));
@@ -38,8 +51,49 @@
             margin: 0;
         }
 
+        .nav-menu>li>a {
+            padding: 10px 0;
+        }
+
         .profile>i {
             margin: 0 10px 0 5px;
+        }
+
+        ul li ul.dropdown li {
+            display: block;
+        }
+
+        ul li ul.dropdown {
+            width: auto;
+            background: #2A2A2A;
+            position: absolute;
+            margin: 10px 0;
+            border-top: 1px solid red;
+            z-index: 999;
+            display: none;
+        }
+
+
+        ul li:hover ul.dropdown {
+            display: flex;
+        }
+
+        .dropdown {
+            list-style-type: none;
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        ul li ul.dropdown li {
+            margin: 0;
+            margin-right: 30px;
+            font-size: 12px;
+        }
+
+        ul li ul.dropdown li a:hover {
+            background: red;
+            color: #fff;
         }
     </style>
 </head>
@@ -55,8 +109,14 @@
                 </a>
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
-                    <li><a href="/movies-2">Movies</a></li>
-                    <li><a href="/tv-show">TV-Show</a></li>
+                    <li>
+                        <a href="/movies-2">Movies</a>
+                        <ul class="dropdown">
+                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
+                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
+                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
 
@@ -115,16 +175,19 @@
             </div>
         </div>
     </div>
+
     <div class="section">
         <div class="container">
             <div class="section-header">
-                {{-- Search result for "{{ $result->title }}" --}}
+                @if ($result)
+                    Search result for "{{ $result }}"
+                @endif
             </div>
-            <div class="grid ">
+            <div class="grid">
                 @if ($movies)
                     @foreach ($movies as $movie)
                         <a href="{{ route('show', $movie->id) }}" class="movie-item">
-                            <img src="{{ asset('img/cartoons/JujutsyKaisen-0.jpg') }}" alt="">
+                            <img src="{{ $movie->poster }}" alt="">
                             <div class="movie-item-content">
                                 <div class="movie-item-title">
                                     {{ $movie->title }}
@@ -149,9 +212,10 @@
                         </a>
                     @endforeach
                 @endif
-                @error('errno')
-                    <p>{{ session('errno') }}</p>
-                @enderror
+
+                @if ($errno)
+                        <h3>{{ $errno }}.  </h3>
+                @endif
             </div>
         </div>
     </div>

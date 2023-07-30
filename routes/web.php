@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\MoviePlayController;
+use App\Http\Controllers\MovieSearchController;
 use App\Http\Controllers\paymentControlker;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\UserController;
@@ -111,8 +112,8 @@ Route::group(['middleware' => ['login.checker']], function () {
     Route::get('/movies-2', [MoviePlayController::class, 'movies']);
     Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
     Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
-    Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
-    Route::get('/result', [MoviePlayController::class, 'result'])->name('result');
+    Route::post('/search', [MovieSearchController::class, 'movie_search'])->name('search');
+    Route::get('/genre/{genre}',[MovieSearchController::class, 'genre_type'])->name('genre');
 });
 
 

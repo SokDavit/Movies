@@ -21,10 +21,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
+        input[type="search"]::-webkit-input-placeholder {
+            color: white;
+        }
+
+        .modal-backdrop {
+            --bs-backdrop-zindex: 1;
+
+        }
+
+        .nav-menu>li>a {
+            padding: 10px 0;
+        }
+
         .paginate {
             position: relative;
             margin-top: 30px;
@@ -75,6 +92,43 @@
         .profile>i {
             margin: 0 10px 0 5px;
         }
+
+        ul li ul.dropdown li {
+            display: block;
+        }
+
+        ul li ul.dropdown {
+            width: auto;
+            background: #2A2A2A;
+            position: absolute;
+            margin: 10px 0;
+            border-top: 1px solid red;
+            z-index: 999;
+            display: none;
+        }
+
+
+        ul li:hover ul.dropdown {
+            display: flex;
+        }
+
+        .dropdown {
+            list-style-type: none;
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        ul li ul.dropdown li {
+            margin: 0;
+            margin-right: 30px;
+            font-size: 12px;
+        }
+
+        ul li ul.dropdown li a:hover {
+            background: red;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -89,14 +143,35 @@
                 </a>
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="/movies">Home</a></li>
-                    <li><a href="/movies-2">Movies</a></li>
-                    {{-- <li><a href="/tv-show">TV-Show</a></li> --}}
+                    <li>
+                        <a href="/movies-2">Movies</a>
+                        <ul class="dropdown">
+                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
+                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
+                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
 
                 <div class="profile unselected">
                     {{-- Search bar --}}
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                    <div class="modal fade" id="exampleModal" tabindex="2" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+
+                                <div class="modal-body">
+                                    <form action="{{ route('search') }}" method="post">
+                                        @csrf
+                                        <input type="search" name="search" id="search" placeholder="Search..."
+                                            class="form-control bg-dark text-white">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- Bell ring --}}
                     <i class="bi bi-bell-fill"></i>
                     {{-- Profile --}}
