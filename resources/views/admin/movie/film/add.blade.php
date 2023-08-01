@@ -80,7 +80,7 @@
                                     <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
                                 @enderror
                             </div>
-                            
+
                             <div class="input-field">
                                 <label for="year">Release</label>
                                 <input type="date" name="year" id="year">

@@ -199,7 +199,7 @@
                                     <div class="movie-info">
                                         <span>{{ $silde->quality }}</span>
                                     </div>
-                                    <div class="movie-info">    
+                                    <div class="movie-info">
                                         <span>{{ $silde->age }}</span>
                                     </div>
                                 </div>

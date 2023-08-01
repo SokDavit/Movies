@@ -6,6 +6,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class FilmController extends Controller
@@ -17,7 +18,7 @@ class FilmController extends Controller
     {
         $films = Movie::all();
         $user = User::all();
-        // return $user[1]->email; // Becuase it an array 
+        // return $user[1]->email; // Becuase it an array
         return view('admin.movie.film.index', compact('films'));
     }
 
@@ -72,9 +73,22 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function view(Request $request, string $id)
     {
-        return 'calling function show';
+        // $films = Movie::where('id', $id)->first();
+        $genre = DB::table('movie')
+        ->where('movie.id', $id)
+        ->join('genre', 'movie.genre_id', 'genre.id')
+        ->select('genre_type')
+        ->first();
+    $movies = DB::table('Movie')
+        ->where('movie.id', $id)
+        ->join('genre', 'movie.genre_id', 'genre.id')
+        ->select('movie.*', 'genre.genre_type')
+        ->where('genre_type', $genre->genre_type)
+        ->first();
+        return dd($movies);
+        return view('admin.movie.film.view', compact('films'));
         //
     }
 
@@ -148,10 +162,21 @@ class FilmController extends Controller
 
     public function deleteRecord(Request $request)
     {
+        return 'u';
         $ids = $request->input('chkIds');
 
         Movie::whereIn('id', $ids)->delete();
         // return $ids;
         return Redirect::route('admin.movie.film');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $films = Movie::all();
+        $result = Movie::where('title', 'LIKE', '%'. $search .'%' );
+
+
+        return view('admin.movie.film.index', compact('result', 'films'));
     }
 }

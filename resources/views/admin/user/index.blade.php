@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @section('rightback')
-    <form action="{{ route('deleteRecord') }}" method="post">
+    <form action="" method="post">
         <div class="main-top">
             <h1>Admin->User</h1>
         </div>
@@ -9,12 +9,6 @@
             @csrf
             <div class="field-box">
                 <div class="search-field">
-
-                    @csrf
-                    <button class="btn btn-icon" id="btnDelete">
-                        <i class="bi bi-trash"></i>
-                        Delete
-                    </button>
                 </div>
                 <div class="action-field">
                     <button type="button" class="btn btn-danger">
@@ -53,7 +47,7 @@
                                     </td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->status }}</td>
-                                    <td>{{ $user->started_date }}</td>
+                                    <td>{{ $user->start_date }}</td>
                                     <td>{{ $user->end_date }}</td>
                                     <td>{{ $user->active }}</td>
                                     <td>

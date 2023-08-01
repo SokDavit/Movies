@@ -409,8 +409,11 @@ input{
 }
 .action-edit{
   background: #394D89;
-  
+
 }
 .action-delete{
   background: #e50914;
+}
+.action-view{
+    background: rgba(52, 113, 255, 0.855);
 }

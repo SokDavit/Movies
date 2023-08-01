@@ -18,7 +18,7 @@ class MoviePlayController extends Controller
     {
         $user = User::where('id', session('user_id'))->first();
         $sub = Subscription::where('id', $user->subId)->first();
-        if ($user && $sub->status == true) {
+        if ($user && $sub && $sub->status == true) {
             $date = '2023-01-01';
             $slides = Movie::where('year', '>', $date)->limit(3)->get();
             $subSlides = DB::table('Movie')
@@ -43,7 +43,7 @@ class MoviePlayController extends Controller
 
 
         // return dd($movies);
-        return Redirect::route('movies.login-form');
+        return view('movies.index');
     }
 
     public function movies()
@@ -78,6 +78,10 @@ class MoviePlayController extends Controller
 
     public function movie_play(Request $request, string $id)
     {
+        $watched =[
+            'active' => 1,
+        ];
+        Movie::save();
         $genre = DB::table('movie')
             ->join('genre', 'movie.genre_id', 'genre.id')
             ->select('genre_type')

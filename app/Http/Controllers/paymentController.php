@@ -27,12 +27,6 @@ class paymentController extends Controller
     //
     public function payment(Request $request)
     {
-        $request->validate([
-            'card_number' => 'required|digits:16',
-            'expiration_date' => 'required|date_format:Y/m',
-            'cvv' => 'required|digits:3',
-            'cardHolderName' => 'required|string',
-        ]);
         $user = User::where('id', session('user_id'))->first();
         $subPlan = SubPlan::where('id', session('plan_temp'))->first();
         //
@@ -47,7 +41,7 @@ class paymentController extends Controller
         //
         $sub = Subscription::create([
             'subPlanId' => $subPlan->id,
-            'started_date' => Carbon::today(),
+            'start_date' => Carbon::now(),
             'end_date' => Carbon::now()->addDays(30),
             'status' => true,
         ]);

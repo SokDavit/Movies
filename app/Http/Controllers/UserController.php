@@ -13,7 +13,7 @@ class UserController extends Controller
     public function loginForm(Request $request)
     {
         // CHECK SUB
-        $data = User::where('id', session('user_id'))->first();
+        // $data = User::where('id', session('user_id'))->first();
         if (session('user_logged_in') ) {
             return Redirect::route('movies');
         }

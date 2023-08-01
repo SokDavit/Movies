@@ -10,5 +10,5 @@ class Subscription extends Model
     use HasFactory;
     protected $table = 'subscription';
     protected $primaryKey  = 'id';
-    protected $fillable = [ 'subPlanId', 'started_date', 'end_date', 'status'];
+    protected $fillable = [ 'subPlanId', 'start_date', 'end_date', 'status'];
 }

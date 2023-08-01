@@ -7,6 +7,7 @@ use App\Http\Controllers\MoviePlayController;
 use App\Http\Controllers\MovieSearchController;
 use App\Http\Controllers\paymentControlker;
 use App\Http\Controllers\paymentController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,14 +35,25 @@ Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
 Route::get('/admin/feedback', [AdminController::class, 'feedback'])->name('admin.feedback');
 // FILM CUSTOMIZE
 Route::get('/admin/movie/film', [FilmController::class, 'index'])->name('admin.movie.film');
+Route::get('/admin/movie/film/view/{id}', [FilmController::class, 'view'])->name('view');
 Route::get('/admin/movie/add', function () {
     return view('admin.movie.film.add');
 })->name('admin.movie.add');
 Route::post('/admin/movie/film/update/{id}', [FilmController::class, 'update'])->name('film.update');
-Route::post('/admin/movie/film/deleteRecords', [FilmController::class, 'deleteRecord'])->name('deleteRecord');
+// Route::post('/admin/movie/film/deleteRecords', [FilmController::class, 'deleteRecord'])->name('deleteRecord');
 Route::get('/admin/movie/film/deleteRecord/{id}', [FilmController::class, 'destroy'])->name('destroy');
 Route::get('/admin/movie/film/editRecord/{id}', [FilmController::class, 'edit'])->name('edit');
 Route::post('/admin/movie/film/store', [FilmController::class, 'store'])->name('film.store');
+Route::post('/admin/movie/film/search', [FilmController::class, 'search'])->name('film.search');
+// REPORT CUSTOMIZE
+Route::get('/admin/report/index', [ReportController::class, 'index'])->name('report');
+// REPORT POPULAR MOVIES
+Route::get('/admin/report/popularMovie', [ReportController::class, 'popularMovie'])->name('popularMovie');
+// REPORT USER ACTIVE
+Route::get('/admin/report/userActive', [ReportController::class, 'userActive'])->name('userActive');
+// REPORT NEW USERS
+Route::get('/admin/report/newUser', [ReportController::class, 'newUser'])->name('newUser');
+
 // MIDDLEWARE ADMIN
 Route::group(['middleware' => ['admin.checker']], function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
@@ -98,7 +110,7 @@ Route::get('/signup/platform', function () {
     return view('movies.signup.platform');
 });
 // PAYMENT
-Route::get('/signup/paymentPicker/{id}',[paymentController::class, 'paymentPicker'])->name('paymenPicker');;
+Route::get('/signup/paymentPicker/{id}', [paymentController::class, 'paymentPicker'])->name('paymenPicker');;
 Route::get('/signup/creditoption', [paymentController::class, 'creditoption'])->name('creditoption');
 Route::post('/payment', [paymentController::class, 'payment'])->name('payment');
 Route::get('/paymentSuccessfuly', function () {
@@ -113,8 +125,8 @@ Route::group(['middleware' => ['login.checker']], function () {
     Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
     Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
     Route::post('/search', [MovieSearchController::class, 'movie_search'])->name('search');
-    Route::get('/genre/{genre}',[MovieSearchController::class, 'genre_type'])->name('genre');
+    Route::get('/genre/{genre}', [MovieSearchController::class, 'genre_type'])->name('genre');
 });
 
 
-// 
+//
