@@ -2,7 +2,7 @@
 
 @section('rightback')
     <div class="main-top">
-        <h1>Movie</h1>
+        <h1>Popular Movie</h1>
     </div>
     <section class="main-course">
         <div class="course-box">

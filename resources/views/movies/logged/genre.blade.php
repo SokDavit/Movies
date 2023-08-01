@@ -108,24 +108,22 @@
         }
 
 
-        ul li:hover ul.dropdown {
+        ul li:hover ul.dropdown{
             display: flex;
         }
-
         .dropdown {
             list-style-type: none;
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(50px, 1fr));
             padding: 20px;
-            gap: 30px;
-        }
 
-        ul li ul.dropdown li {
+        }
+        ul li ul.dropdown li{
             margin: 0;
             margin-right: 30px;
             font-size: 12px;
         }
-
-        ul li ul.dropdown li a:hover {
+        ul li ul.dropdown li a:hover{
             background: red;
             color: #fff;
         }
@@ -146,9 +144,9 @@
                     <li>
                         <a href="/movies-2">Movies</a>
                         <ul class="dropdown">
-                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
-                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
-                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                            @foreach ($genres as $genre)
+                            <li><a href="{{ route('genre', $genre->genre_type) }}">{{ $genre->genre_type }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

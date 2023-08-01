@@ -5,8 +5,8 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\MoviePlayController;
 use App\Http\Controllers\MovieSearchController;
-use App\Http\Controllers\paymentControlker;
 use App\Http\Controllers\paymentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +80,8 @@ Route::group(['middleware' => ['admin.checker']], function () {
         return view('admin.feedback.index');
     });
 });
+Route::post('/myList/{id}', [FilmController::class, 'myList'])->name('myList');
+
 
 //-------------------------------------------------------LOGIN USER MOVIES------------------------------------------------------------------------------------
 Route::get('/', [UserController::class, 'loginForm'])->name('movies.login-form');
@@ -124,8 +126,10 @@ Route::group(['middleware' => ['login.checker']], function () {
     Route::get('/movies-2', [MoviePlayController::class, 'movies']);
     Route::get('/tv-show', [MoviePlayController::class, 'tv_show']);
     Route::get('/play/{id}', [MoviePlayController::class, 'movie_play'])->name('play');
-    Route::post('/search', [MovieSearchController::class, 'movie_search'])->name('search');
-    Route::get('/genre/{genre}', [MovieSearchController::class, 'genre_type'])->name('genre');
+    Route::post('/search', [MoviePlayController::class, 'movie_search'])->name('search');
+    Route::get('/genre/{genre}', [MoviePlayController::class, 'genre_type'])->name('genre');
+    // USER PROFILE MANAGE
+    Route::get('/admin/movies/profile/manage/{id}', [ProfileController::class, 'profile'])->name('profile.manage');
 });
 
 

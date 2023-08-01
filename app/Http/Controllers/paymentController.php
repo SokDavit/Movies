@@ -30,10 +30,22 @@ class paymentController extends Controller
         $user = User::where('id', session('user_id'))->first();
         $subPlan = SubPlan::where('id', session('plan_temp'))->first();
         //
+        $request->validate([
+            'cardnumber' => 'required|integer|min:16',
+            'expirationDate' => 'required|date_format:m/y',
+            'cvv' => 'required|integer|min:3',
+            'firstname' => 'required|min:2|max:20',
+            'lastname' => 'required|min:2|max:20',
+        ], [
+            'expirationDate.required' => 'The expiration date is required',
+            'expirationDate.date_format' => 'expiration date must be m/y',
+            'cvv.max' => 'The CVV must be 3 digits long',
+        ]);
+
         $input = $request->all();
         $card = CreditCard::create([
             'cardnumber' => $request->cardnumber,
-            'expiration_date' => $request->expiration_date,
+            'expiration_date' => $request->expirationDate,
             'cvv' => $request->cvv,
             'cardHolderName' => $request->firstname . ' ' . $request->lastname,
 
@@ -52,11 +64,10 @@ class paymentController extends Controller
 
             'userId' => $user->id,
             'subId' => $sub->id,
-            'payment_date' => Carbon::today(),
+            'payment_date' => Carbon::now(),
             'amount' => $subPlan->price,
             'cardId' => $card->id,
         ]);
-
 
         return Redirect::route('paymentSuccess');
     }

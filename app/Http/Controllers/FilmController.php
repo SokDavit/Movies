@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Mylist;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +18,7 @@ class FilmController extends Controller
      */
     public function index(Request $request)
     {
-        $films = Movie::all();
-        $user = User::all();
-        // return $user[1]->email; // Becuase it an array
+        $films = Movie::orderBy('year', 'desc')->paginate(20);
         return view('admin.movie.film.index', compact('films'));
     }
 
@@ -77,17 +77,17 @@ class FilmController extends Controller
     {
         // $films = Movie::where('id', $id)->first();
         $genre = DB::table('movie')
-        ->where('movie.id', $id)
-        ->join('genre', 'movie.genre_id', 'genre.id')
-        ->select('genre_type')
-        ->first();
-    $movies = DB::table('Movie')
-        ->where('movie.id', $id)
-        ->join('genre', 'movie.genre_id', 'genre.id')
-        ->select('movie.*', 'genre.genre_type')
-        ->where('genre_type', $genre->genre_type)
-        ->first();
-        return dd($movies);
+            ->where('movie.id', $id)
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('genre_type')
+            ->first();
+        $films = DB::table('Movie')
+            ->where('movie.id', $id)
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('movie.*', 'genre.genre_type')
+            ->where('genre_type', $genre->genre_type)
+            ->first();
+        // return dd($movies);
         return view('admin.movie.film.view', compact('films'));
         //
     }
@@ -98,7 +98,17 @@ class FilmController extends Controller
     public function edit(string $id)
     {
         //
-        $film = Movie::where('id', $id)->first();
+        $genre = DB::table('movie')
+            ->where('movie.id', $id)
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('genre_type')
+            ->first();
+        $film = DB::table('Movie')
+            ->where('movie.id', $id)
+            ->join('genre', 'movie.genre_id', 'genre.id')
+            ->select('movie.*', 'genre.genre_type')
+            ->where('genre_type', $genre->genre_type)
+            ->first();
         return view('admin.movie.film.update', compact('film'));
     }
 
@@ -109,7 +119,7 @@ class FilmController extends Controller
     {
         $input = $request->all();
         $films = Movie::where('id', $id)->first();
-        $genre = Genre::where('genre_type',$films->genre)->first();
+        $genre = Genre::where('genre_type', $request->genre)->first();
         if ($genre && $genre->count() > 0) {
             $input['genre_id'] = $genre->id;
         } else {
@@ -173,10 +183,32 @@ class FilmController extends Controller
     public function search(Request $request)
     {
         $search = $request->search;
-        $films = Movie::all();
-        $result = Movie::where('title', 'LIKE', '%'. $search .'%' );
+        $films = Movie::where('title', 'LIKE', '%' . $search . '%')->get();
+        // return $films;
+        if ($films->count() > 0) {
+            return view('admin.movie.film.index', compact('films'))->with('errno', 'Search not found.');
+        } else {
+            return view('admin.movie.film.index', compact('films'))->with('errno', 'Search not found.');
+        }
+    }
+    //
+    public function myList(Request $request, $id)
+    {
+        $movie = Movie::where('id', $id)->first();
+        $user = User::where('id', session('user_id'))->first();
+        if (!$movie) {
+            return response()->json(['error' => 'Profile not found'], 404);
+        }
+        $myList = Mylist::create([
+            'userId' => $user,
+            'movie' => $movie->id,
+            
+        ]);
+        $mylist = Profile::find(session('user_id'));
+        $movie = $request->input('liked');
 
+        // Update the 'liked' state in the database
 
-        return view('admin.movie.film.index', compact('result', 'films'));
+        return response()->json(['success' => true]);
     }
 }

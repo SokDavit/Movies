@@ -146,9 +146,9 @@
                     <li>
                         <a href="/movies-2">Movies</a>
                         <ul class="dropdown">
-                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
-                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
-                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                            @foreach ($genres as $genre)
+                            <li><a href="{{ route('genre', $genre->genre_type) }}">{{ $genre->genre_type }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

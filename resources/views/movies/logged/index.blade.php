@@ -73,9 +73,10 @@
         }
         .dropdown {
             list-style-type: none;
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(50px, 1fr));
             padding: 20px;
-            gap: 30px;
+
         }
         ul li ul.dropdown li{
             margin: 0;
@@ -101,9 +102,9 @@
                     <li><a href="/movies">Home</a></li>
                     <li><a href="/movies-2">Movies</a>
                         <ul class="dropdown">
-                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
-                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
-                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                            @foreach ($genres as $genre)
+                            <li><a href="{{ route('genre', $genre->genre_type) }}">{{ $genre->genre_type }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
 
@@ -151,7 +152,7 @@
                                 </a>
                             </div>
                             <ul>
-                                <li><a href="#">Manage Profile</a></li>
+                                <li><a href="{{ route('profile.manage', session('user_id')) }}">Manage Profile</a></li>
                                 <hr>
                                 <li><a href="#">Account</a></li>
                                 <li><a href="{{ route('user.logout') }}">Sign out of Movies</a></li>
@@ -247,10 +248,10 @@
                                     <span>{{ $subSlide->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>HD</span>
+                                    <span>{{ $subSlide->quality }}</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>16+</span>
+                                    <span>{{ $subSlide->age }}</span>
                                 </div>
                             </div>
                         </div>
@@ -288,10 +289,10 @@
                                     <span>{{ $movie->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>HD</span>
+                                    <span>{{ $subSlide->quality }}</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>16+</span>
+                                    <span>{{ $subSlide->age }}</span>
                                 </div>
                             </div>
                         </div>
@@ -302,52 +303,11 @@
         </div>
     </div>
     <!-- END LATEST MOVIES SECTION -->
-
-    <!-- LATEST SERIES SECTION -->
-    {{-- <div class="section">
-        <div class="container">
-            <div class="section-header">
-                latest series
-            </div>
-            <div class="movies-slide carousel-nav-center owl-carousel">
-                <!-- MOVIE ITEM -->
-                @foreach ($movies as $movie)
-                    <a href="#" class="movie-item">
-                        <img src="{{ $movie->poster }}" alt="">
-                        <div class="movie-item-content">
-                            <div class="movie-item-title">
-                                Supergirl
-                            </div>
-                            <div class="movie-infos">
-                                <div class="movie-info">
-                                    <i class="bx bxs-star"></i>
-                                    <span>9.5</span>
-                                </div>
-                                <div class="movie-info">
-                                    <i class="bx bxs-time"></i>
-                                    <span>120 mins</span>
-                                </div>
-                                <div class="movie-info">
-                                    <span>HD</span>
-                                </div>
-                                <div class="movie-info">
-                                    <span>16+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
-                <!-- END MOVIE ITEM -->
-            </div>
-        </div>
-    </div> --}}
-    <!-- END LATEST SERIES SECTION -->
-
     <!-- LATEST CARTOONS SECTION -->
     <div class="section">
         <div class="container">
             <div class="section-header">
-                latest cartoons
+                latest Animation
             </div>
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
@@ -368,10 +328,10 @@
                                     <span>{{ $anime->duration }} mins</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>HD</span>
+                                    <span>{{ $subSlide->quality }}</span>
                                 </div>
                                 <div class="movie-info">
-                                    <span>16+</span>
+                                    <span>{{ $subSlide->age }}</span>
                                 </div>
                             </div>
                         </div>

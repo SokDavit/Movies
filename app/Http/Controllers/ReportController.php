@@ -21,10 +21,18 @@ class ReportController extends Controller
     //
     public function newUser(Request $request)
     {
-        $userNews = User::where('updated_at', '>', Carbon::now()->subHours(24))->get();
-        $date = Carbon::now()->addDays(30);
-        $users = User::where('updated_at', '>', $date);
-        return view('admin.report.newUser.index');
+        $now = Carbon::now(); // Current date and time
+        $twentyFourHoursAgo = $now->copy()->subDay(); // 24 hours ago
+
+        // $userNews = User::whereBetween('created_at', [$twentyFourHoursAgo, $now])->get();
+
+        $now = Carbon::now(); // Current date and time
+        $oneMonthAgo = $now->copy()->subMonth(); // One month ago
+
+        $userNews = User::whereDate('created_at', '>=', $oneMonthAgo)->get();
+
+
+        return view('admin.report.newUser.index', compact('userNews'));
     }
     public function userActive(Request $request)
     {

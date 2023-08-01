@@ -29,9 +29,10 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <style>
-        .nav-menu>li>a{
+        .nav-menu>li>a {
             padding: 10px 0;
         }
+
         .profile>i {
             margin: 0 10px 0 5px;
         }
@@ -40,6 +41,7 @@
             --bs-backdrop-zindex: 1;
 
         }
+
         input[type="search"]::-webkit-input-placeholder {
             color: white;
         }
@@ -80,17 +82,19 @@
             color: #fff;
             margin-right: 10px;
             font-size: 20px;
-            font-weight:700;
+            font-weight: 700;
         }
 
-        .detail >a{
+        .detail>a {
             margin: 0 10px;
             color: red;
         }
-        .d-flex i{
+
+        .d-flex i {
             color: #FFCC00;
-            background:#262626;
+            background: #262626;
         }
+
         ul li ul.dropdown li {
             display: block;
         }
@@ -111,9 +115,10 @@
         }
         .dropdown {
             list-style-type: none;
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(50px, 1fr));
             padding: 20px;
-            gap: 30px;
+
         }
         ul li ul.dropdown li{
             margin: 0;
@@ -141,9 +146,9 @@
                     <li>
                         <a href="/movies-2">Movies</a>
                         <ul class="dropdown">
-                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
-                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
-                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                            @foreach ($genres as $genre)
+                            <li><a href="{{ route('genre', $genre->genre_type) }}">{{ $genre->genre_type }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>
@@ -206,36 +211,34 @@
     </div>
     <!-- END NAV -->
     <!-- MOVIE PLAY  -->
-        <div class="ratio ratio-21x9">
-            <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
-        </div>
+    <div class="ratio ratio-21x9">
+        <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
+    </div>
     <div class="section">
         <div class="container">
             <div class="d-flex p-3 bg">
                 <div class="col-8">
                     <div class="header-title">
-                        <h2>{{ $movies->title }} ( {{ $movies->year }}  )</h2>
+                        <h2>{{ $movies->title }} ( {{ $movies->year }} )</h2>
                     </div>
                     <div class="d-flex detail">
                         <p>Genre:</p>
-                        <a href="#">Adventure</a>
-                        <p>,</p>
-                        <a href="#">Fantasy</a>
+                        <a href="{{ route('genre', $movies->genre_type) }}">{{ $movies->genre_type }}</a>
 
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex">
                         <div class="rating">
-                            8.5
+                            0
                         </div>
                         <div class="row">
                             <p style="font-size:12px; font-weight:500; margin:0;">rating</p>
                             <div class="d-flex">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
                                 <i class="bi bi-star"></i>
 
                             </div>

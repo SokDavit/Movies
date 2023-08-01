@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <title>Movies</title>
     <style>
-        .box-field{
+        .box-field {
             margin: auto;
             width: 25%;
         }
+        .icon{
+            color: red;
+            font-size: 10rem;
+        }
+        .detail{
+            font-size: 2rem;
+        }
+        .btn{
+            font-size: 25px;
+            margin: 20px 0;
+            width: 200px;
+            padding: 10px;
+
+        }
     </style>
 </head>
+
 <body style="background: white; color: black;">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md border border-bottom mb-5">
@@ -35,16 +52,19 @@
     {{-- Payment succesfuly icon --}}
     <div class="box-field">
         <div class="row text-center">
-            <div>
-                <img src="" alt="">
+            <div class="icon">
+                <i class="bi bi-check-circle"></i>
             </div>
-            <div>
+            <div class="detail">
                 <label for="">Payment Successfuly</label>
+                
             </div>
             <div>
                 <button class="btn btn-danger" onclick="window.location='/'">Next</button>
+                <p>Continue to Movies</p>
             </div>
         </div>
     </div>
 </body>
+
 </html>

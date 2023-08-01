@@ -19,7 +19,7 @@
             </div>
             <div class="field">
                 <div class="input-field">
-                    <img src="{{ asset('img/profile.png') }}" alt="" width="100%" height="500px">
+                    <img src="{{ $films->poster }}" alt="" width="100%" height="700px">
                 </div>
                 <div class="input-field">
                     <label for="title"><b>Title</b>:  {{ $films->title }}</label>

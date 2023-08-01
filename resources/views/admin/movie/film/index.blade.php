@@ -39,40 +39,43 @@
                         <th>Title</th>
                         <th>Duration</th>
                         <th>Quality</th>
-                        <th>Year</th>
+                        <th>Release</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($films as $film)
-                        <tr>
-                            <td><input type="checkbox" value="{{ $film->id }}" name="chkIds[]" id="chkIds[]"
-                                    class="checkboxname"></td>
-                            <td>{{ $film->title }}</td>
-                            <td>{{ $film->duration }}</td>
-                            <td>{{ $film->quality }}</td>
-                            <td>{{ $film->year }}</td>
-                            <td>
-                                <button type="button" onclick="window.location='{{ route('view', $film->id) }}'"
-                                    value="action-edit" class="btn-action action-view">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
-                                <button type="button" onclick="window.location='{{ route('edit', $film->id) }}'"
-                                    value="action-edit" class="btn-action action-edit">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                                <button type="button" onclick="window.location='{{ route('destroy', $film->id) }}'"
-                                    value="action-delete" class="btn-action action-delete">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if ($films)
+                        @foreach ($films as $film)
+                            <tr>
+                                <td><input type="checkbox" value="{{ $film->id }}" name="chkIds[]" id="chkIds[]"
+                                        class="checkboxname"></td>
+                                <td>{{ $film->title }}</td>
+                                <td>{{ $film->duration }}</td>
+                                <td>{{ $film->quality }}</td>
+                                <td>{{ $film->year }}</td>
+                                <td>
+                                    <button type="button" onclick="window.location='{{ route('view', $film->id) }}'"
+                                        value="action-edit" class="btn-action action-view">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+                                    <button type="button" onclick="window.location='{{ route('edit', $film->id) }}'"
+                                        value="action-edit" class="btn-action action-edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button type="button" onclick="window.location='{{ route('destroy', $film->id) }}'"
+                                        value="action-delete" class="btn-action action-delete">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        
+                    @endif
+
                 </tbody>
             </table>
         </div>
     </section>
-
     <script>
         var checkboxes = document.querySelectorAll("input[type='checkbox']");
 

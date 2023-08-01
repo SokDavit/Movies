@@ -42,9 +42,9 @@ class UserController extends Controller
         $password = $request->password;
         $data = User::where('email', $email)->first();
 
-        if ($data) {
+        if ($data && $data->count() >0) {
             $hashed_password = $data->password;
-            if ($data->email == $email && Hash::check($password, $hashed_password) && $data->subscription !='mone') {
+            if ($data->email == $email && Hash::check($password, $hashed_password) && $data->subscription !=true) {
                 $data->active = true;
                 session(['user_logged_in' => $data->email, 'user_id' => $data->id]);
                 $data->save();

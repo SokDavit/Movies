@@ -115,7 +115,8 @@
 
         .input-group {
             display: flex;
-            gap: 10px;
+
+            gap: 9px;
 
         }
     </style>
@@ -153,13 +154,32 @@
             @csrf
             <div class="section-body">
                 <input type="tel" name="cardnumber" id="cardnumber" placeholder="Card Number" class="form-control">
+                @error('cardnumber')
+                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                @enderror
                 <div class="input-group">
-                    <input type="tel" name="expiration_date" id="expiration_date" class="form-control"
+                    <div>
+                        <input type="tel" name="expirationDate" id="expirationDate" class="form-control"
                         placeholder="Expiration Date">
-                    <input type="tel" name="cvv" id="cvv" class="form-control" placeholder="CVV">
+                    @error('expirationDate')
+                        <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                    @enderror
+                    </div>
+                    <div>
+                        <input type="tel" name="cvv" id="cvv" class="form-control" placeholder="CVV">
+                    @error('cvv')
+                        <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                    @enderror
+                    </div>
                 </div>
                 <input type="text" name="firstname" placeholder="First Name" class="form-control">
+                @error('firstname')
+                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                @enderror
                 <input type="text" name="lastname" placeholder="Last Name" class="form-control">
+                @error('lastname')
+                    <span style="color:#E87C03;font-size:14px;">{{ $message }}</span>
+                @enderror
 
                 <div class="editplan">
                     <div>
@@ -179,7 +199,8 @@
                 <p>By checking the checkbox below, you agree to our Terms of Use, Privacy Statement, and that you are
                     over
                     18. Netflix will automatically continue your membership and charge the membership fee (currently
-                    USD{{ $plan->price }}/month) to your payment method until you cancel. You may cancel at any time to
+                    USD{{ $plan->price }}/month) to your payment method until you cancel. You may cancel at any time
+                    to
                     avoid future
                     charges.
                 </p>

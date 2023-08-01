@@ -170,26 +170,48 @@
         }
 
 
-        ul li:hover ul.dropdown {
+        ul li:hover ul.dropdown{
             display: flex;
         }
-
         .dropdown {
             list-style-type: none;
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(50px, 1fr));
             padding: 20px;
-            gap: 30px;
-        }
 
-        ul li ul.dropdown li {
+        }
+        ul li ul.dropdown li{
             margin: 0;
             margin-right: 30px;
             font-size: 12px;
         }
-
-        ul li ul.dropdown li a:hover {
+        ul li ul.dropdown li a:hover{
             background: red;
             color: #fff;
+        }
+
+        .ratio-fullScreen iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .float-end {
+            z-index: 1001;
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            color: red;
+            /* margin-right: -100px; */
+        }
+
+        .btn-close {
+            color: #fff;
+            --bs-btn-close-color: #fff;
+            --bs-btn-close-bg: url();
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -208,9 +230,9 @@
                     <li>
                         <a href="/movies-2">Movies</a>
                         <ul class="dropdown">
-                            <li><a href="{{ route('genre', 'Action') }}">Action</a></li>
-                            <li><a href="{{ route('genre', 'Adventure') }}">Adventure</a></li>
-                            <li><a href="{{ route('genre', 'Animation') }}">Animation</a></li>
+                            @foreach ($genres as $genre)
+                            <li><a href="{{ route('genre', $genre->genre_type) }}">{{ $genre->genre_type }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>
@@ -289,13 +311,13 @@
                         <div class="sub-detail">
                             <span>{{ $movies->year }}</span>
                             |
-                            <span>16+</span>
+                            <span>{{ $movies->age }}</span>
                             |
                             <span>{{ $movies->duration }} mins</span>
                             |
                             <span>{{ $movies->genre_type }}</span>
                         </div>
-
+                        {{ $movies->description }}
                     </div>
                     <div class="btn-foot">
                         <button type="button" class="btn btn-danger"
@@ -303,31 +325,34 @@
                             <i class="bi bi-play-fill"></i>
                             <span>Play</span>
                         </button>
-                        <button type="button" class="btn btn-danger">
+                        <button type="button" class="btn btn-danger" onclick="toggleLike()">
                             <i class="bi bi-plus-lg"></i>
                             <span>My List</span>
                         </button>
                     </div>
-                    <!-- Full screen modal -->
-                    <div class="modal fade .modal-fullscreen-xl-down" id="exampleModalFullscreen" tabindex="2"
-                        aria-labelledby="exampleModalFullscreenLabel" style="display: none;" aria-hidden="true">
-                        <div class="modal-dialog modal-fullscreen">
-                            <div class="modal-content">
 
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    <div class="ratio ratio-21x9">
-                                        <iframe src="{{ $movies->url }}" allowfullscreen></iframe>
+                    <div class="trailer">
+                        <button type="button" class="btn btn-trailer" data-bs-toggle="modal"
+                            data-bs-target="#traileMovie">
+                            <i class="bi bi-play-circle"></i>
+                            <span>Watch Trailer</span>
+                        </button>
+                        <!-- Full screen modal -->
+                        <div class="modal fade" id="traileMovie" tabindex="-1"
+                            aria-labelledby="exampleModalFullscreenLabel" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-fullscreen">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                                            aria-label="Close"><i class="bi bi-x-circle"></i>
+                                        </button>
+                                        <div class="ratio-fullScreen">
+                                            <iframe src="{{ $movies->url }}" allowfullscreen autoplay></iframe>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="trailer">
-                        <button type="button" class="btn btn-trailer">
-                            <i class="bi bi-play-circle"></i>
-                            <span>Watch Trailer</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -345,7 +370,8 @@
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
         crossorigin="anonymous"></script>
     <!-- APP SCRIPT -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script defer src="{{ asset('js/app.js') }}"></script>
+    
 </body>
 
 </html>
